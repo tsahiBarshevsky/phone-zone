@@ -65,4 +65,27 @@ export default makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  goToCart:
+  {
+    width: '100%'
+  },
+  divider:
+  {
+    width: '100%',
+    marginBlock: 10
+  },
+  subtotal:
+  {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    marginBottom: 5
+  },
+  cardSubtotal:
+  {
+    color: '#d32f2f',
+    fontWeight: 600,
+    marginLeft: 5
+  }
 }));

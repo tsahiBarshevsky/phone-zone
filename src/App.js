@@ -53,7 +53,7 @@ const App = () =>
     return (
         <Router>
             <div>
-                <Navbar cart={cart} />
+                <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <Switch>
                     <Route exact path="/">
                         <Products products={products} onAddToCart={addToCart} />
