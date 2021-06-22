@@ -91,14 +91,17 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                    <div>
-                        {Object.keys(cart).length > 0 &&
-                        cart.line_items.map((item) => (
-                            <CartItem 
-                                product={item} 
-                                updateCartQuantity={updateCartQuantity}
-                                removeFromCart={removeFromCart} />
-                        ))}
+                    {Object.keys(cart).length > 0 && cart.line_items.length > 0 ?
+                    <>
+                        <div className={classes.items}>
+                            {Object.keys(cart).length > 0 &&
+                            cart.line_items.map((item) => (
+                                <CartItem 
+                                    product={item} 
+                                    updateCartQuantity={updateCartQuantity}
+                                    removeFromCart={removeFromCart} />
+                            ))}  
+                        </div>
                         <Divider className={classes.divider} />
                         {Object.keys(cart).length > 0 &&
                         <div className={classes.subtotal}>
@@ -113,7 +116,11 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                             to='/cart' 
                             onClick={handleClose}
                             className={classes.goToCart}>Go to cart</Button>
-                    </div>
+                    </>
+                    :
+                    <div className={classes.emptyCart}>
+                        <Typography className={classes.typography} variant="h6">Your cart is empty</Typography>
+                    </div>}
             </StyledMenu>
         </>
     )

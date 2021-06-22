@@ -96,5 +96,18 @@ export default makeStyles((theme) => ({
   link:
   {
     height: 52
+  },
+  items:
+  {
+    height: 480,
+    overflowY: 'auto'
+  },
+  emptyCart:
+  {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 20,
+    width: '100%'
   }
 }));

@@ -60,7 +60,8 @@ export default makeStyles(() => ({
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        transform: 'translateY(25%)'
+        paddingBlock: 5,
+        transform: 'translateY(20%)',
     },
     name:
     {

@@ -40,11 +40,9 @@ const CartItem = ({product, updateCartQuantity, removeFromCart}) =>
                 <div className={classes.options}>
                     <Quantity />
                     <Tooltip title="Delete from cart" placement="left" enterNextDelay="1000">
-                        <span>
-                            <IconButton size="small" onClick={() => removeFromCart(product.id)}>
-                                <DeleteRoundedIcon />
-                            </IconButton>
-                        </span>
+                        <IconButton size="small" onClick={() => removeFromCart(product.id)}>
+                            <DeleteRoundedIcon />
+                        </IconButton>
                     </Tooltip>
                 </div>
             </div>
