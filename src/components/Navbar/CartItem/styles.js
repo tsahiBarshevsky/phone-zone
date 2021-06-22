@@ -7,8 +7,9 @@ export default makeStyles(() => ({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         width: '100%',
+        marginBottom: 20,
+        cursor: 'default'
         // backgroundColor: 'lightskyblue',
-        marginBottom: 20
     },
     image:
     {
@@ -23,6 +24,8 @@ export default makeStyles(() => ({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
+        paddingTop: 5,
+
     },
     quantityContainer:
     {
@@ -44,15 +47,30 @@ export default makeStyles(() => ({
     quantityValue:
     {
         height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         paddingInline: 10,
         borderRight: '1px solid black',
-        borderLeft: '1px solid black'
+        borderLeft: '1px solid black',
     },
     options:
     {
         width: '100%',
         display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'center'
+        alignItems: 'center',
+        transform: 'translateY(25%)'
+    },
+    name:
+    {
+      fontFamily: `'Baloo Tammudu 2', sans-serif`,
+      fontSize: 18,
+      fontWeight: 600,
+      marginBottom: -7
+    },
+    typography:
+    {
+        fontFamily: `'Baloo Tammudu 2', sans-serif`,
     }
 }));

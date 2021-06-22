@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core'
+import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Tooltip } from '@material-ui/core'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import useStyles from './styles';
 
@@ -12,15 +12,19 @@ const Product = ({product, onAddToCart}) =>
             <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
             <CardContent>
                 <div className={classes.cardContent}>
-                    <Typography variant="h6" gutterBottom>{product.name}</Typography>
-                    <Typography variant="h6">{product.price.formatted_with_symbol}</Typography>
+                    <Typography className={classes.typography} variant="h6">{product.name}</Typography>
+                    <Typography className={classes.typography} variant="subtitle1">{product.price.formatted_with_symbol}</Typography>
                 </div>
-                <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" />
+                <Typography className={classes.description} dangerouslySetInnerHTML={{ __html: product.description }} variant="body1" color="textSecondary" />
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <IconButton aria-label="Add to card" onClick={() => onAddToCart(product.id, 1)}>
-                    <AddShoppingCartIcon />
-                </IconButton>
+                <Tooltip title="Add to cart" placement="left" enterNextDelay="1000">
+                    <span>
+                        <IconButton aria-label="Add to card" onClick={() => onAddToCart(product.id, product.name, 1)}>
+                            <AddShoppingCartIcon />
+                        </IconButton>
+                    </span>
+                </Tooltip>
             </CardActions>
         </Card>
     )

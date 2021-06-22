@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, IconButton } from '@material-ui/core';
+import { Typography, IconButton, Tooltip } from '@material-ui/core';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
@@ -35,11 +35,17 @@ const CartItem = ({product, updateCartQuantity, removeFromCart}) =>
         <div className={classes.container}>
             <img src={product.media.source} alt={product.name} className={classes.image} />
             <div className={classes.info}>
-                <Typography variant="subtitle1">{product.name}</Typography>
-                <Typography variant="subtitle2">{product.line_total.formatted_with_symbol}</Typography>
+                <Typography className={classes.name} variant="subtitle1">{product.name}</Typography>
+                <Typography className={classes.typography} variant="subtitle1">{product.line_total.formatted_with_symbol}</Typography>
                 <div className={classes.options}>
                     <Quantity />
-                    <IconButton size="small" onClick={() => removeFromCart(product.id)}><DeleteRoundedIcon /></IconButton>
+                    <Tooltip title="Delete from cart" placement="left" enterNextDelay="1000">
+                        <span>
+                            <IconButton size="small" onClick={() => removeFromCart(product.id)}>
+                                <DeleteRoundedIcon />
+                            </IconButton>
+                        </span>
+                    </Tooltip>
                 </div>
             </div>
         </div>

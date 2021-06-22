@@ -79,13 +79,22 @@ export default makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-    marginBottom: 5
+    alignItems: 'center',
+    cursor: 'default'
   },
   cardSubtotal:
   {
     color: '#d32f2f',
+    fontFamily: `'Baloo Tammudu 2', sans-serif`,
     fontWeight: 600,
-    marginLeft: 5
+    marginLeft: 8
+  },
+  typography:
+  {
+    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+  },
+  link:
+  {
+    height: 52
   }
 }));

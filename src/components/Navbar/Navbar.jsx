@@ -4,11 +4,13 @@ import { Link, useLocation } from 'react-router-dom';
 import ShoppongCart from '@material-ui/icons/ShoppingCart';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
+import logo from '../../assets/logo.png';
 
 const StyledMenu = withStyles(
 {
     paper: 
     {
+        width: 400,
         marginTop: 5,
         padding: 10,
         borderRadius: 10,
@@ -65,18 +67,13 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
         setAnchorEl(null);
     }
 
-    console.log('====================================');
-    console.log(cart);
-    console.log('====================================');
-
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
-                    <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-                        {/* <img src={logo} alt="Shop" height="25px" className={classes.image} /> */}
-                        Phone Zone
-                    </Typography>
+                    <Link to='/' className={classes.link}>
+                        <img src={logo} alt="Phone Zone" height="50px" className={classes.image} />
+                    </Link>
                     <div className={classes.grow} />
                     {location.pathname === '/' && (
                     <div className={classes.button}>
@@ -105,8 +102,8 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                         <Divider className={classes.divider} />
                         {Object.keys(cart).length > 0 &&
                         <div className={classes.subtotal}>
-                            <Typography variant="h6">Subtotal: </Typography>
-                            <Typography variant="subtitle1" className={classes.cardSubtotal}>
+                            <Typography className={classes.typography} variant="h6">Subtotal: </Typography>
+                            <Typography className={classes.cardSubtotal} variant="subtitle1" >
                                 {cart.subtotal.formatted_with_symbol}
                             </Typography>
                         </div>}

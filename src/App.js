@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { commerce } from './lib/commerce';
 import { Products, Navbar, Cart } from './components';
+import './styles.sass';
 
 const App = () => 
 {
@@ -21,10 +24,11 @@ const App = () =>
         setCart(await commerce.cart.retrieve());
     }
 
-    const addToCart = async (productID, quantity) =>
+    const addToCart = async (productID, productName, quantity) =>
     {
         const { cart } = await commerce.cart.add(productID, quantity);
         setCart(cart);
+        notify("success", `${productName} added to cart`)
     }
 
     const updateCartQuantity = async (productID, quantity) =>
@@ -43,6 +47,17 @@ const App = () =>
     {
         const { cart } = await commerce.cart.empty();
         setCart(cart);
+    }
+
+    const notify = (type, message) =>
+    {
+        switch (type)
+        {
+            case 'success':
+                toast.success(message);
+                break;
+            default: return null;
+        }
     }
 
     useEffect(() => {
@@ -67,6 +82,13 @@ const App = () =>
                     </Route>
                 </Switch>
             </div>
+            <ToastContainer
+                position="bottom-center"
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </Router>
     )
 }
