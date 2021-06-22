@@ -10,4 +10,10 @@ export default makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  priceSlider:
+  {
+    paddingInline: 15,
+    marginTop: 50,
+    cursor: 'default'
+  }
 }));

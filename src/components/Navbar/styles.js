@@ -99,7 +99,7 @@ export default makeStyles((theme) => ({
   },
   items:
   {
-    height: 480,
+    maxHeight: 480,
     overflowY: 'auto'
   },
   emptyCart:
