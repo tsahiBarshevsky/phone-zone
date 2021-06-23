@@ -1,0 +1,88 @@
+/* === Colors === */
+
+$primary: #0c6961
+$secondary: #fbf3f0
+
+/* === Breakpoints === */
+
+$vs: 400px
+$xs: 600px
+$sm: 960px
+$md: 1280px
+$lg: 1920px
+
+.homepage-container
+    cursor: default
+
+    .paper
+        height: 750px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        color: white
+        background-color: $primary
+        border-radius: 0
+
+        &::after
+            content: ''
+            display: block
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 100%
+            opacity: 0.05
+            background-image: url('https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')
+            background-repeat: no-repeat
+            background-position: 50% 0
+            background-position-y: center
+            background-size: cover
+            filter: blur(1.5px)
+
+    .testimonial-container
+        display: flex
+        flex-direction: column
+        height: fit-content
+        width: 100%
+        color: black
+        background-color: $secondary
+        padding: 20px 200px 0
+
+        @media screen and ( max-width: $lg )
+            padding-inline: 100px
+
+        @media screen and ( max-width: $md )
+            padding-inline: 0
+
+        .testimonial
+            height: 400px
+            width: 100%
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            border-radius: 0
+            background-color: transparent
+
+            @media screen and ( max-width: $xs )
+                padding-inline: 15px
+
+            .info
+                display: flex
+                justify-content: space-between
+                align-items: center
+                width: 255px
+
+                .image
+                    width: 80px
+                    height: 80px
+                    border-radius: 50%
+                    object-fit: cover
+                    object-position: center center
+
+                .name-and-device
+                    display: flex
+                    flex-direction: column
+                    justify-content: flex-start
+                    align-items: flex-start

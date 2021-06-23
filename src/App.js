@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { commerce } from './lib/commerce';
-import { Products, Navbar, Cart } from './components';
+import { Homepage, Products, Navbar, Cart } from './components';
 import './styles.sass';
 
 const App = () => 
@@ -71,6 +71,9 @@ const App = () =>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <Switch>
                     <Route exact path="/">
+                        <Homepage />
+                    </Route>
+                    <Route exact path="/phones">
                         <Products products={products} onAddToCart={addToCart} />
                     </Route>
                     <Route exact path="/cart">
