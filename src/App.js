@@ -71,7 +71,7 @@ const App = () =>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <Switch>
                     <Route exact path="/">
-                        <Homepage />
+                        <Homepage products={products} />
                     </Route>
                     <Route exact path="/phones">
                         <Products products={products} onAddToCart={addToCart} />

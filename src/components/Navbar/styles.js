@@ -85,13 +85,13 @@ export default makeStyles((theme) => ({
   cardSubtotal:
   {
     color: '#d32f2f',
-    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    fontFamily: `'Dosis', sans-serif`,
     fontWeight: 600,
     marginLeft: 8
   },
   typography:
   {
-    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    fontFamily: `'Dosis', sans-serif`,
   },
   link:
   {

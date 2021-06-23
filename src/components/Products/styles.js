@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
   },
   title:
   {
-    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    fontFamily: `'Dosis', sans-serif`,
     marginBottom: 10
   },
   priceSlider:
@@ -59,11 +59,11 @@ export default makeStyles((theme) => ({
   },
   typography:
   {
-    fontFamily: `'Baloo Tammudu 2', sans-serif`
+    fontFamily: `'Dosis', sans-serif`
   },
   caption:
   {
-    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    fontFamily: `'Dosis', sans-serif`,
     fontWeight: 600
   }
 }));

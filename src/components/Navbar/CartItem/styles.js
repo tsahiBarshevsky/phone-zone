@@ -65,13 +65,13 @@ export default makeStyles(() => ({
     },
     name:
     {
-      fontFamily: `'Baloo Tammudu 2', sans-serif`,
+      fontFamily: `'Dosis', sans-serif`,
       fontSize: 18,
       fontWeight: 600,
       marginBottom: -7
     },
     typography:
     {
-        fontFamily: `'Baloo Tammudu 2', sans-serif`,
+        fontFamily: `'Dosis', sans-serif`,
     }
 }));

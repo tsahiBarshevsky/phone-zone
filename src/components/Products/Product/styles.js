@@ -33,12 +33,12 @@ export default makeStyles((theme) => ({
     },
     typography:
     {
-      fontFamily: `'Baloo Tammudu 2', sans-serif`,
+      fontFamily: `'Dosis', sans-serif`,
       lineHeight: 1.2
     },
     description:
     {
-      fontFamily: `'Baloo Tammudu 2', sans-serif`,
+      fontFamily: `'Dosis', sans-serif`,
       lineHeight: 1.5
     }
 }));
