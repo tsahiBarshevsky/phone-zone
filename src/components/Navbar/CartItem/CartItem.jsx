@@ -39,7 +39,7 @@ const CartItem = ({product, updateCartQuantity, removeFromCart}) =>
                 <Typography className={classes.typography} variant="subtitle1">{product.line_total.formatted_with_symbol}</Typography>
                 <div className={classes.options}>
                     <Quantity />
-                    <Tooltip title="Delete from cart" placement="left" enterNextDelay="1000">
+                    <Tooltip title="Delete from cart" placement="left" enterNextDelay={1000}>
                         <IconButton size="small" onClick={() => removeFromCart(product.id)}>
                             <DeleteRoundedIcon />
                         </IconButton>

@@ -92,11 +92,12 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
                     {Object.keys(cart).length > 0 && cart.line_items.length > 0 ?
-                    <>
+                    <div>
                         <div className={classes.items}>
                             {Object.keys(cart).length > 0 &&
                             cart.line_items.map((item) => (
                                 <CartItem 
+                                    key={item.id}
                                     product={item} 
                                     updateCartQuantity={updateCartQuantity}
                                     removeFromCart={removeFromCart} />
@@ -116,7 +117,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                             to='/cart' 
                             onClick={handleClose}
                             className={classes.goToCart}>Go to cart</Button>
-                    </>
+                    </div>
                     :
                     <div className={classes.emptyCart}>
                         <Typography className={classes.typography} variant="h6">Your cart is empty</Typography>

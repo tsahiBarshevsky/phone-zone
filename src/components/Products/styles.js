@@ -2,18 +2,68 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
-  content: {
+  main: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   },
   root: {
-    flexGrow: 1,
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    cursor: 'default',
+    [theme.breakpoints.down('xs')]:
+    {
+      flexDirection: 'column'
+    }
+  },
+  item:
+  {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  filters:
+  {
+    width: 'fit-content',
+    paddingInline: 5,
+    marginRight: 20,
+    [theme.breakpoints.down('xs')]:
+    {
+      width: '100%',
+      marginBottom: 25
+    }
+    // backgroundColor: 'lightgreen',
+  },
+  title:
+  {
+    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    marginBottom: 10
   },
   priceSlider:
   {
-    paddingInline: 15,
-    marginTop: 50,
-    cursor: 'default'
+    paddingInline: 5,
+    marginTop: -5,
+    marginBottom: -15,
+    cursor: 'default',
+    width: 250,
+    [theme.breakpoints.down('xs')]:
+    {
+      width: '100%'
+    }
+  },
+  range:
+  {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  typography:
+  {
+    fontFamily: `'Baloo Tammudu 2', sans-serif`
+  },
+  caption:
+  {
+    fontFamily: `'Baloo Tammudu 2', sans-serif`,
+    fontWeight: 600
   }
 }));

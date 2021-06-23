@@ -1,16 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     root:
     {
-      maxWidth: '100%',
+      width: 350,
       borderRadius: 10,
-      cursor: 'default'
+      cursor: 'default',
+      [theme.breakpoints.down('xs')]:
+      {
+        width: '100%'
+      }
     },
     media: 
     {
       height: 0,
       paddingTop: '56.25%', // 16:9
+      marginBottom: 10,
+      backgroundPosition: 'center top',
     },
     cardActions: 
     {
@@ -27,7 +33,8 @@ export default makeStyles(() => ({
     },
     typography:
     {
-      fontFamily: `'Baloo Tammudu 2', sans-serif`
+      fontFamily: `'Baloo Tammudu 2', sans-serif`,
+      lineHeight: 1.2
     },
     description:
     {

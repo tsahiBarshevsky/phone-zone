@@ -9,7 +9,7 @@ const Product = ({product, onAddToCart}) =>
 
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
+            <CardMedia className={classes.media} image={product.media.source} title={product.name} />
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography className={classes.typography} variant="h6">{product.name}</Typography>
@@ -18,7 +18,7 @@ const Product = ({product, onAddToCart}) =>
                 <Typography className={classes.description} dangerouslySetInnerHTML={{ __html: product.description }} variant="body1" color="textSecondary" />
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <Tooltip title="Add to cart" placement="left" enterNextDelay="1000">
+                <Tooltip title="Add to cart" placement="left" enterNextDelay={1000}>
                     <span>
                         <IconButton aria-label="Add to card" onClick={() => onAddToCart(product.id, product.name, 1)}>
                             <AddShoppingCartIcon />
