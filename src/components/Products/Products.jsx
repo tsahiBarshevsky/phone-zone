@@ -13,6 +13,7 @@ const Products = ({products, onAddToCart}) =>
         onePlus: false
     });
     const { samsung, apple, onePlus } = brands;
+    const filters = ['Samsung', 'Apple', 'OnePlus'];
     const classes = useStyles();
 
     useEffect(() => {
@@ -35,7 +36,11 @@ const Products = ({products, onAddToCart}) =>
 
     const phonesBetweenRange = (phone) =>
     {
-        return phone.price.raw >= price[0] && phone.price.raw <= price[1];
+        
+        return (
+            phone.price.raw >= price[0] && 
+            phone.price.raw <= price[1] && 
+            filters.some(filter => phone.name.includes(filter)));
     }
 
     const handleRangeChange = (event, newPrice) => 
