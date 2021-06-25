@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
 import Product from './Product/Product';
 import useStyles from './styles';
 
@@ -9,12 +9,19 @@ const Products = ({products, onAddToCart}) =>
     const [borders, setBorders] = useState([0, 0]);
     const [brandsFilter, setBrandsFilter] = useState([]);
     const [yearsFilter, setYearsFilter] = useState([]);
-    const [brands, setBrands] = useState({ Samsung: false, Apple: false, OnePlus: false });
+    const [sortType, setSortType] = useState('Highest price to lowest');
+    const [brands, setBrands] = useState({ 
+        Samsung: false,
+        Apple: false, 
+        OnePlus: false,
+        Xiaomi: false,
+        Poco: false 
+    });
     const [years, setYears] = useState({ year2020: false, year2021: false });
     
-    const { Samsung, Apple, OnePlus } = brands;
+    const { Samsung, Apple, OnePlus, Xiaomi, Poco } = brands;
     const { year2020, year2021 } = years;
-    const filterCheck = [Samsung, Apple, OnePlus, year2020, year2021].filter((v) => v).length > 0;
+    const filterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, year2020, year2021].filter((v) => v).length > 0;
     const classes = useStyles();
 
     useEffect(() => {
@@ -34,6 +41,11 @@ const Products = ({products, onAddToCart}) =>
         }
         getPricesRange();
     }, [products]);
+
+    const handleSortChange = (event) => 
+    {
+        setSortType(event.target.value);
+    }
 
     const applyFilters = (phone) =>
     {
@@ -83,12 +95,45 @@ const Products = ({products, onAddToCart}) =>
         setPrice(newPrice);
     }
 
+    const sortPhones = (a, b) =>
+    {
+        switch (sortType)
+        {
+            case 'Highest price to lowest':
+                if (a.price.raw < b.price.raw)
+                    return 1;
+                else
+                {
+                    if (b.price.raw < a.price.raw)
+                        return -1;
+                    return 0;
+                }
+            case 'Lowest price to highest':
+                if (a.price.raw > b.price.raw)
+                    return 1;
+                else
+                {
+                    if (b.price.raw > a.price.raw)
+                        return -1;
+                    return 0;
+                }
+            default: return;
+        }
+    }
+
     return (
         <main className={classes.main}>
             <div className={classes.toolbar} />
             <div className={classes.root}>
                 <div className={classes.filters}>
                     <Typography className={classes.title} variant="h5">Phones filtering</Typography>
+                    <Typography className={classes.typography} variant="h6">Sory by:</Typography>
+                    <FormControl style={{width: '100%'}}>
+                        <Select value={sortType} onChange={handleSortChange}>
+                            <MenuItem value={'Highest price to lowest'}>Highest price to lowest</MenuItem>
+                            <MenuItem value={'Lowest price to highest'}>Lowest price to highest</MenuItem>
+                        </Select>
+                    </FormControl>
                     <Typography className={classes.typography} variant="h6">Price range</Typography>
                     <div className={classes.priceSlider}>
                         <Slider
@@ -113,10 +158,16 @@ const Products = ({products, onAddToCart}) =>
                                 label="Apple" />
                             <FormControlLabel
                                 control={<Checkbox checked={OnePlus} onChange={handleBrandChange} name="OnePlus" />}
-                                label="One Plus" />
+                                label="OnePlus" />
+                            <FormControlLabel
+                                control={<Checkbox checked={Xiaomi} onChange={handleBrandChange} name="Xiaomi" />}
+                                label="Xiaomi" />
+                            <FormControlLabel
+                                control={<Checkbox checked={Poco} onChange={handleBrandChange} name="Poco" />}
+                                label="Poco" />
                         </FormGroup>
                     </FormControl>
-                    <Typography className={classes.typography} variant="h6">Years</Typography>
+                    <Typography className={classes.typography} variant="h6">Release year</Typography>
                     <FormControl component="fieldset">
                         <FormGroup>
                             <FormControlLabel
@@ -130,15 +181,13 @@ const Products = ({products, onAddToCart}) =>
                 </div>
                 <Grid container justify="center" alignItems="flex-start" spacing={4}>
                     {filterCheck ?
-                    <>
-                        {products.filter(applyFilters).map((product) => (
-                            <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
-                                <Product product={product} onAddToCart={onAddToCart} />
-                            </Grid>
-                        ))}
-                    </>
+                    products.sort(sortPhones).filter(applyFilters).map((product) => (
+                        <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
+                            <Product product={product} onAddToCart={onAddToCart} />
+                        </Grid>
+                    ))
                     :
-                    products.map((product) => (
+                    products.sort(sortPhones).map((product) => (
                         <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
                             <Product product={product} onAddToCart={onAddToCart} />
                         </Grid>
