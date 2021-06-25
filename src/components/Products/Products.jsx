@@ -7,13 +7,14 @@ const Products = ({products, onAddToCart}) =>
 {
     const [price, setPrice] = useState([0, 0]);
     const [borders, setBorders] = useState([0, 0]);
-    const [filters, setFilters] = useState([]);
+    const [brandsFilter, setBrandsFilter] = useState([]);
+    const [yearsFilter, setYearsFilter] = useState([]);
     const [brands, setBrands] = useState({ Samsung: false, Apple: false, OnePlus: false });
     const [years, setYears] = useState({ year2020: false, year2021: false });
     
     const { Samsung, Apple, OnePlus } = brands;
     const { year2020, year2021 } = years;
-    const filterCheck = [Samsung, Apple, OnePlus].filter((v) => v).length > 0;
+    const filterCheck = [Samsung, Apple, OnePlus, year2020, year2021].filter((v) => v).length > 0;
     const classes = useStyles();
 
     useEffect(() => {
@@ -39,22 +40,23 @@ const Products = ({products, onAddToCart}) =>
         return (
             phone.price.raw >= price[0] && 
             phone.price.raw <= price[1] && 
-            filters.some(filter => phone.name.includes(filter)));
+            brandsFilter.some(filter => phone.name.includes(filter)) &&
+            yearsFilter.some(filter => phone.description.includes(filter)));
     }
 
     const handleBrandChange = (event) => 
     {
         setBrands({ ...brands, [event.target.name]: event.target.checked });
         if (event.target.checked) // add to filters array
-            setFilters(oldFilters => [...oldFilters ,event.target.name]);
+            setBrandsFilter(oldFilters => [...oldFilters ,event.target.name]);
         else // delete from filters array
         {
-            var copy = [...filters];
+            var copy = [...brandsFilter];
             const index = copy.indexOf(event.target.name);
             if (index > -1)
             {
                 copy.splice(index, 1);
-                setFilters(copy);
+                setBrandsFilter(copy);
             }
         }
     }
@@ -62,6 +64,18 @@ const Products = ({products, onAddToCart}) =>
     const handleYearChange = (event) =>
     {
         setYears({ ...years, [event.target.name]: event.target.checked });
+        if (event.target.checked) // add to filters array
+            setYearsFilter(oldFilters => [...oldFilters ,event.target.name.replace( /^\D+/g, '')]);
+        else // delete from filters array
+        {
+            var copy = [...yearsFilter];
+            const index = copy.indexOf(event.target.name.replace( /^\D+/g, ''));
+            if (index > -1)
+            {
+                copy.splice(index, 1);
+                setYearsFilter(copy);
+            }
+        }
     }
 
     const handleRangeChange = (event, newPrice) => 
@@ -115,12 +129,14 @@ const Products = ({products, onAddToCart}) =>
                     </FormControl>
                 </div>
                 <Grid container justify="center" alignItems="flex-start" spacing={4}>
-                    {filterCheck ? 
-                    products.filter(applyFilters).map((product) => (
-                        <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
-                            <Product product={product} onAddToCart={onAddToCart} />
-                        </Grid>
-                    ))
+                    {filterCheck ?
+                    <>
+                        {products.filter(applyFilters).map((product) => (
+                            <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
+                                <Product product={product} onAddToCart={onAddToCart} />
+                            </Grid>
+                        ))}
+                    </>
                     :
                     products.map((product) => (
                         <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>

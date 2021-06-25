@@ -75,7 +75,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                         <img src={logo} alt="Phone Zone" height="50px" className={classes.image} />
                     </Link>
                     <div className={classes.grow} />
-                    {location.pathname === '/' && (
+                    {location.pathname !== '/cart' && (
                     <div className={classes.button}>
                         <IconButton onClick={handleClick} aria-label="Show card items" color="inherit">
                             <Badge badgeContent={cart.total_items} color="secondary">
