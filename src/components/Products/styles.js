@@ -33,7 +33,6 @@ export default makeStyles((theme) => ({
       width: '100%',
       marginBottom: 25
     },
-    backgroundColor: 'lightgreen',
   },
   title:
   {
@@ -65,5 +64,21 @@ export default makeStyles((theme) => ({
   {
     fontFamily: `'Nunito', sans-serif`,
     fontWeight: 600
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: 'all 0.3s ease-in'
+  },
+  expandOpen: 
+  {
+    transform: 'rotate(90deg)',
+    transition: 'all 0.3s ease-out'
+  },
+  header:
+  {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   }
 }));
