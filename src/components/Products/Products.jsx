@@ -9,6 +9,7 @@ const Products = ({products, onAddToCart}) =>
     const [borders, setBorders] = useState([0, 0]);
     const [brandsFilter, setBrandsFilter] = useState([]);
     const [yearsFilter, setYearsFilter] = useState([]);
+    const [priceRangeCheck, setPriceRangeCheck] = useState(false)
     const [sortType, setSortType] = useState('Highest price to lowest');
     const [brands, setBrands] = useState({ 
         Samsung: false,
@@ -21,7 +22,8 @@ const Products = ({products, onAddToCart}) =>
     
     const { Samsung, Apple, OnePlus, Xiaomi, Poco } = brands;
     const { year2020, year2021 } = years;
-    const filterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, year2020, year2021].filter((v) => v).length > 0;
+    const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco].filter((v) => v).length > 0;
+    const yearsFilterCheck = [year2020, year2021].filter((v) => v).length > 0;
     const classes = useStyles();
 
     useEffect(() => {
@@ -49,11 +51,30 @@ const Products = ({products, onAddToCart}) =>
 
     const applyFilters = (phone) =>
     {
-        return (
-            phone.price.raw >= price[0] && 
-            phone.price.raw <= price[1] && 
-            brandsFilter.some(filter => phone.name.includes(filter)) &&
-            yearsFilter.some(filter => phone.description.includes(filter)));
+        switch (true)
+        {
+            case (brandFilterCheck && yearsFilterCheck && priceRangeCheck):
+                return (
+                    phone.price.raw >= price[0] && 
+                    phone.price.raw <= price[1] && 
+                    brandsFilter.some(filter => phone.name.includes(filter)) &&
+                    yearsFilter.some(filter => phone.description.includes(filter)));
+            case (brandFilterCheck && !yearsFilterCheck):
+                return (
+                    phone.price.raw >= price[0] && 
+                    phone.price.raw <= price[1] && 
+                    brandsFilter.some(filter => phone.name.includes(filter)));
+            case (!brandFilterCheck && yearsFilterCheck):
+                return (
+                    phone.price.raw >= price[0] && 
+                    phone.price.raw <= price[1] && 
+                    yearsFilter.some(filter => phone.description.includes(filter)));
+            case (!brandFilterCheck && !yearsFilterCheck && priceRangeCheck):
+                return (
+                    phone.price.raw >= price[0] && 
+                    phone.price.raw <= price[1]);
+            default: return;
+        }
     }
 
     const handleBrandChange = (event) => 
@@ -93,6 +114,7 @@ const Products = ({products, onAddToCart}) =>
     const handleRangeChange = (event, newPrice) => 
     {
         setPrice(newPrice);
+        setPriceRangeCheck(true);
     }
 
     const sortPhones = (a, b) =>
@@ -140,6 +162,7 @@ const Products = ({products, onAddToCart}) =>
                             min={borders[0]}
                             max={borders[1]}
                             value={price}
+                            step={1}
                             onChange={handleRangeChange} />
                     </div> 
                     <div className={classes.range}>
@@ -179,13 +202,20 @@ const Products = ({products, onAddToCart}) =>
                         </FormGroup>
                     </FormControl>
                 </div>
+                {/* <h1>{products.filter(applyFilters).length}</h1> */}
                 <Grid container justify="center" alignItems="flex-start" spacing={4}>
-                    {filterCheck ?
-                    products.sort(sortPhones).filter(applyFilters).map((product) => (
-                        <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
-                            <Product product={product} onAddToCart={onAddToCart} />
-                        </Grid>
-                    ))
+                    {brandFilterCheck || yearsFilterCheck || priceRangeCheck ?
+                    (
+                        (products.filter(applyFilters).length > 0 ?
+                            products.sort(sortPhones).filter(applyFilters).map((product) => (
+                            <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
+                                <Product product={product} onAddToCart={onAddToCart} />
+                            </Grid>
+                        ))
+                        :
+                        <h1>No phones found</h1>
+                        )
+                    )
                     :
                     products.sort(sortPhones).map((product) => (
                         <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
