@@ -65,13 +65,13 @@ export default makeStyles(() => ({
     },
     name:
     {
-      fontFamily: `'Dosis', sans-serif`,
+      fontFamily: `'Nunito', sans-serif`,
       fontSize: 18,
       fontWeight: 600,
       marginBottom: -7
     },
     typography:
     {
-        fontFamily: `'Dosis', sans-serif`,
+        fontFamily: `'Nunito', sans-serif`,
     }
 }));

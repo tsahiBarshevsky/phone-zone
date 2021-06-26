@@ -16,6 +16,7 @@ const Product = ({product, onAddToCart}) =>
                     <Typography className={classes.typography} variant="subtitle1">{product.price.formatted_with_symbol}</Typography>
                 </div>
                 <Typography className={classes.description} dangerouslySetInnerHTML={{ __html: product.description }} variant="body1" color="textSecondary" />
+                <a className={classes.link} href={product.thank_you_url} rel="noreferrer" target="_blank">See full specification</a>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
                 <Tooltip title="Add to cart" placement="left" enterNextDelay={1000}>

@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'flex-start',
     cursor: 'default',
-    [theme.breakpoints.down('xs')]:
+    [theme.breakpoints.down('sm')]:
     {
       flexDirection: 'column'
     }
@@ -28,16 +28,16 @@ export default makeStyles((theme) => ({
     width: 'fit-content',
     paddingInline: 5,
     marginRight: 20,
-    [theme.breakpoints.down('xs')]:
+    [theme.breakpoints.down('sm')]:
     {
       width: '100%',
       marginBottom: 25
-    }
-    // backgroundColor: 'lightgreen',
+    },
+    backgroundColor: 'lightgreen',
   },
   title:
   {
-    fontFamily: `'Dosis', sans-serif`,
+    fontFamily: `'Nunito', sans-serif`,
     marginBottom: 10
   },
   priceSlider:
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
     marginBottom: -15,
     cursor: 'default',
     width: 250,
-    [theme.breakpoints.down('xs')]:
+    [theme.breakpoints.down('sm')]:
     {
       width: '100%'
     }
@@ -59,11 +59,11 @@ export default makeStyles((theme) => ({
   },
   typography:
   {
-    fontFamily: `'Dosis', sans-serif`
+    fontFamily: `'Nunito', sans-serif`
   },
   caption:
   {
-    fontFamily: `'Dosis', sans-serif`,
+    fontFamily: `'Nunito', sans-serif`,
     fontWeight: 600
   }
 }));

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
+import { Button, Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
 import Product from './Product/Product';
 import useStyles from './styles';
 
@@ -53,26 +53,44 @@ const Products = ({products, onAddToCart}) =>
     {
         switch (true)
         {
-            case (brandFilterCheck && yearsFilterCheck && priceRangeCheck):
+            // #1 - TTT
+            case (priceRangeCheck && brandFilterCheck && yearsFilterCheck):
                 return (
                     phone.price.raw >= price[0] && 
                     phone.price.raw <= price[1] && 
                     brandsFilter.some(filter => phone.name.includes(filter)) &&
                     yearsFilter.some(filter => phone.description.includes(filter)));
-            case (brandFilterCheck && !yearsFilterCheck):
+            // #2 - TTF
+            case (priceRangeCheck && brandFilterCheck && !yearsFilterCheck):
                 return (
                     phone.price.raw >= price[0] && 
                     phone.price.raw <= price[1] && 
                     brandsFilter.some(filter => phone.name.includes(filter)));
-            case (!brandFilterCheck && yearsFilterCheck):
+            // #3 - TFT
+            case (priceRangeCheck && !brandFilterCheck && yearsFilterCheck):
                 return (
                     phone.price.raw >= price[0] && 
                     phone.price.raw <= price[1] && 
                     yearsFilter.some(filter => phone.description.includes(filter)));
-            case (!brandFilterCheck && !yearsFilterCheck && priceRangeCheck):
+            // #4 - TFF
+            case (priceRangeCheck && !brandFilterCheck && !yearsFilterCheck):
                 return (
                     phone.price.raw >= price[0] && 
                     phone.price.raw <= price[1]);
+            // #5 - FTT
+            case (!priceRangeCheck && brandFilterCheck && yearsFilterCheck):
+                return (
+                    brandsFilter.some(filter => phone.name.includes(filter)) &&
+                    yearsFilter.some(filter => phone.description.includes(filter)));
+            // #6 - FTF
+            case (!priceRangeCheck && brandFilterCheck && !yearsFilterCheck):
+                return (
+                    brandsFilter.some(filter => phone.name.includes(filter)));
+            // #7 - FFT
+            case (!priceRangeCheck && !brandFilterCheck && yearsFilterCheck):
+                return (
+                    yearsFilter.some(filter => phone.description.includes(filter)));
+            // #8 - FFF (handle inside render)
             default: return;
         }
     }
@@ -143,6 +161,16 @@ const Products = ({products, onAddToCart}) =>
         }
     }
 
+    const clearFilters = () =>
+    {
+        setBrands({ ...brands, 'Samsung': false, 'Apple': false, 'OnePlus': false, 'Xiaomi': false, 'Poco': false });
+        setYears({ ...years, 'year2020': false, 'year2021': false });
+        setPrice([borders[0], borders[1]]);
+        setPriceRangeCheck(false);
+        setBrandsFilter([]);
+        setYearsFilter([]);
+    }
+
     return (
         <main className={classes.main}>
             <div className={classes.toolbar} />
@@ -201,6 +229,8 @@ const Products = ({products, onAddToCart}) =>
                                 label="2021" />
                         </FormGroup>
                     </FormControl>
+                    <div style={{paddingBottom: 15}} />
+                    <Button type="button" variant="contained" color="primary" onClick={() => clearFilters()}>Clear</Button>
                 </div>
                 {/* <h1>{products.filter(applyFilters).length}</h1> */}
                 <Grid container justify="center" alignItems="flex-start" spacing={4}>
@@ -211,7 +241,7 @@ const Products = ({products, onAddToCart}) =>
                             <Grid item key={product.id} xs={12} sm={6} md={4} lg={4} className={classes.item}>
                                 <Product product={product} onAddToCart={onAddToCart} />
                             </Grid>
-                        ))
+                            ))
                         :
                         <h1>No phones found</h1>
                         )

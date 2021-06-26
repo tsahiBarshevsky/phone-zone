@@ -33,12 +33,25 @@ export default makeStyles((theme) => ({
     },
     typography:
     {
-      fontFamily: `'Dosis', sans-serif`,
+      fontFamily: `'Nunito', sans-serif`,
       lineHeight: 1.2
     },
     description:
     {
-      fontFamily: `'Dosis', sans-serif`,
-      lineHeight: 1.5
+      fontFamily: `'Nunito', sans-serif`,
+      lineHeight: 1.5,
+      marginBottom: 15
+    },
+    link:
+    {
+      textDecoration: 'none',
+      color: 'black',
+      fontSize: 18,
+      transition: 'color 0.5s ease-in-out',
+      '&:hover':
+      {
+      marginTop: 20,
+        color: '#0c6961'
+      }
     }
 }));

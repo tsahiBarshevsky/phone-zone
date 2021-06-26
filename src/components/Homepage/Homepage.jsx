@@ -7,10 +7,10 @@ import './styles.sass';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
-    typography: { fontFamily: `'Dosis', sans-serif` },
+    typography: { fontFamily: `'Nunito', sans-serif` },
     opinion: 
     { 
-        fontFamily: `'Dosis', sans-serif`,
+        fontFamily: `'Nunito', sans-serif`,
         lineHeight: 1.2,
         width: '70%',
         marginBottom: 45,
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     name:
     {
-        fontFamily: `'Dosis', sans-serif`,
+        fontFamily: `'Nunito', sans-serif`,
         fontWeight: 600,
         marginBottom: -5
     },

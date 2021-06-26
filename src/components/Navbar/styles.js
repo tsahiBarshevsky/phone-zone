@@ -85,13 +85,13 @@ export default makeStyles((theme) => ({
   cardSubtotal:
   {
     color: '#d32f2f',
-    fontFamily: `'Dosis', sans-serif`,
+    fontFamily: `'Nunito', sans-serif`,
     fontWeight: 600,
     marginLeft: 8
   },
   typography:
   {
-    fontFamily: `'Dosis', sans-serif`,
+    fontFamily: `'Nunito', sans-serif`,
   },
   link:
   {
