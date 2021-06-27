@@ -1,20 +1,41 @@
 import React from 'react';
-import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@material-ui/core';
+import { Typography, Button, IconButton, makeStyles } from '@material-ui/core';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import './styles.sass';
-// import useStyles from './styles';
+
+const useStyles = makeStyles(() => ({
+    typography: { fontFamily: `'Nunito', sans-serif` },
+    title: 
+    {
+        fontFamily: `'Nunito', sans-serif`,
+        fontWeight: 600
+    }
+}));
 
 const CartItem = ({item, updateCartQuantity, removeFromCart}) => 
 {
-    // const classes = useStyles();
+    const classes = useStyles();
 
     return (
         <div className="root">
             <div className="image-container">
-                <img src={item.media.source} alt={item.name} />
+                {/* <img src={item.media.source} alt={item.name} /> */}
+                <h1>img</h1>
             </div>
-            <div className="title-and-subtotal">
-                <Typography variant="h6">{item.name}</Typography>
-                <Typography variant="subtitle1">{item.line_total.formatted_with_symbol}</Typography>
+            <div className="info">
+                <div className="title-and-subtotal">
+                    <Typography className={classes.title} variant="h6">{item.name}</Typography>
+                    <Typography className={classes.typography} variant="subtitle1">{item.line_total.formatted_with_symbol}</Typography>
+                </div>
+                <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Price: {item.price.formatted_with_symbol}</Typography>
+                <div className="options">
+                    <div>
+                        <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>-</Button>
+                        <Typography>{item.quantity}</Typography>
+                        <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity + 1)}>+</Button>
+                    </div>
+                <IconButton type="button" onClick={() => removeFromCart(item.id)}><DeleteRoundedIcon /></IconButton>
+                </div>
             </div>
         </div>
         // <Card className={classes.root}>

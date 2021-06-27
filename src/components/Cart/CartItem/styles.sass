@@ -1,7 +1,15 @@
+/* === Breakpoints === */
+
+$vs: 400px
+$xs: 600px
+$sm: 960px
+$md: 1280px
+$lg: 1920px
+
 .root
     display: flex
     justify-content: flex-start
-    align-items: center
+    align-items: flex-start
     width: 100%
     border: 1px solid black
     padding-block: 5px
@@ -9,19 +17,36 @@
 
     .image-container
         display: flex
-        flex-direction: column
         justify-content: center
         align-items: center
-        width: 233
-        height: fit-content
-        margin-right: 15
-        background-color: cyan
-        border: 1px solid red
+        width: 320px
+        height: 200px
+        margin-right: 25px
+        background-color: white
+
+        @media screen and ( max-width: $sm )
+            display: none
 
         img
-            height: 15
+            height: 200px
 
-    .title-and-subtotal
+    .info
         display: flex
-        justify-content: space-between
-        align-items: center
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+        width: 100%
+        padding-right: 20px
+        background-color: lightblue
+
+        @media screen and ( max-width: $sm )
+            padding-right: 0
+
+        .title-and-subtotal,
+        .options
+            display: flex
+            justify-content: space-between
+            align-items: center
+            width: 100%
+            background-color: rgba(blue, 0.2)
+            margin-bottom: 10px

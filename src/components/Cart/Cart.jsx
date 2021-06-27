@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => (
 const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) => 
 {
     const classes = useStyles();
+    console.log(cart);
 
     const EmptyCart = () =>
     (
@@ -62,7 +63,8 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                     <div className="order-summary">
                         <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Order summary</Typography>
                         <Divider className={classes.divider} />
-                        <Typography className={classes.typography}>Itmes: {cart.line_items.length}</Typography>
+                        <Typography className={classes.typography}>Itmes: {cart.total_items}</Typography>
+                        <Typography className={classes.typography}>Phones: {cart.total_unique_items}</Typography>
                         <Typography className={classes.typography}>Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
                         <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={emptyCart}>
                             Empty Cart

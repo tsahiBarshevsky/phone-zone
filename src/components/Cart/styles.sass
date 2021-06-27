@@ -49,7 +49,13 @@ $lg: 1920px
         display: flex
         justify-content: center
         align-items: center
-        padding: 15px
+        padding: 15px 150px
+
+        @media screen and ( max-width: $md )
+            padding: 15px 50px
+
+        @media screen and ( max-width: $xs )
+            padding: 15px
 
         .cart
             display: flex
@@ -59,6 +65,9 @@ $lg: 1920px
             padding: 10px
             background-color: #e7e7e7
 
+            @media screen and ( max-width: $sm )
+                flex-direction: column
+
             .products
                 display: flex
                 flex-direction: column
@@ -67,6 +76,9 @@ $lg: 1920px
                 width: 100%
                 padding-right: 25px
                 background-color: lightgreen
+
+                @media screen and ( max-width: $sm )
+                    padding-right: 0
 
             .order-summary
                 display: flex
