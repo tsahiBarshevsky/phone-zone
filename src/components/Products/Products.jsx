@@ -180,16 +180,19 @@ const Products = ({products, onAddToCart}) =>
     return (
         <main className={classes.main}>
             <div className={classes.toolbar} />
+            <div className={classes.pageHeader}>
+                <Typography variant="h3" className={classes.headerTitle}>Our phones</Typography>
+            </div>
             <div className={classes.root}>
                 <div className={classes.filters}>
                     <div className={classes.header}>
-                    <Typography className={classes.title} variant="h5">Phones filtering</Typography>
-                    <IconButton 
-                        className={!expanded? classes.expand : classes.expandOpen}
-                        onClick={() => setExpanded(!expanded)} 
-                        style={matches? {visibility: 'visible'} : {visibility: 'hidden'}}>
-                            <ExpandMoreIcon />
-                    </IconButton>
+                        <Typography className={classes.title} variant="h5">Phones filtering</Typography>
+                        <IconButton 
+                            className={!expanded? classes.expand : classes.expandOpen}
+                            onClick={() => setExpanded(!expanded)} 
+                            style={matches? {visibility: 'visible'} : {visibility: 'hidden'}}>
+                                <ExpandMoreIcon />
+                        </IconButton>
                     </div>
                     <Collapse in={expanded} timeout='auto' unmountOnExit>
                         <Typography className={classes.typography} variant="h6">Sory by:</Typography>

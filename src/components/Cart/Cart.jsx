@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => (
         textTransform: 'uppercase',
         textAlign: 'center',
         lineHeight: 1,
-        letterSpacing: 2
+        letterSpacing: 2,
+        zIndex: 2
     },
     divider:
     {

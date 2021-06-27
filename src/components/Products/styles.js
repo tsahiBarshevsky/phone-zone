@@ -1,18 +1,58 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Image from '../../assets/phone.jpg';
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   main: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3)
+    cursor: 'default',
+  },
+  pageHeader:
+  {
+    height: 250,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    color: 'white',
+    paddingInline: 15,
+    backgroundColor: '#0c6961',
+    zIndex: 1,
+    '&::after':
+    {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      opacity: 0.15,
+      backgroundImage: `url(${Image})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '50% 0',
+      backgroundPositionY: 'center',
+      backgroundSize: 'cover',
+      pointerEvents: 'none',
+      filter: 'blur(1.5px)'
+    }
+  },
+  headerTitle:
+  {
+      fontFamily: `'Nunito', sans-serif`,
+      textTransform: 'uppercase',
+      textAlign: 'center',
+      lineHeight: 1,
+      letterSpacing: 2,
+      zIndex: 2
   },
   root: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    cursor: 'default',
+    padding: theme.spacing(3),
     [theme.breakpoints.down('sm')]:
     {
       flexDirection: 'column'
