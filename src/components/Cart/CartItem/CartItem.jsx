@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, IconButton, makeStyles } from '@material-ui/core';
+import { Typography, Button, IconButton, Tooltip, makeStyles } from '@material-ui/core';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
@@ -11,7 +11,9 @@ const useStyles = makeStyles(() => ({
     {
         fontFamily: `'Nunito', sans-serif`,
         fontWeight: 600,
-        letterSpacing: 1
+        letterSpacing: 1,
+        lineHeight: 1.2,
+        marginRight: 5
     }
 }));
 
@@ -22,8 +24,7 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
     return (
         <div className="root">
             <div className="image-container">
-                {/* <img src={item.media.source} alt={item.name} /> */}
-                <h1>img</h1>
+                <img src={item.media.source} alt={item.name} />
             </div>
             <div className="info">
                 <div className="title-and-subtotal">
@@ -31,6 +32,7 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
                     <Typography className={classes.typography} variant="subtitle1">{item.line_total.formatted_with_symbol}</Typography>
                 </div>
                 <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Model's price: {item.price.formatted_with_symbol}</Typography>
+                <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Quntity: {item.quantity}</Typography>
                 <div className="options">
                     <div className="numeric-quantity-button">
                         <Button className="button" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>
@@ -41,7 +43,13 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
                             <AddRoundedIcon className="icon" />
                         </Button>
                     </div>
-                    <IconButton type="button" onClick={() => removeFromCart(item.id)}><DeleteRoundedIcon /></IconButton>
+                    <Tooltip title="Remove from cart" placement="left" enterNextDelay={1000}>
+                        <span>
+                            <IconButton type="button" onClick={() => removeFromCart(item.id)}>
+                                <DeleteRoundedIcon />
+                            </IconButton>
+                        </span>
+                    </Tooltip>
                 </div>
             </div>
         </div>

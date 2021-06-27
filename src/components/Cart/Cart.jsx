@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Button, Grid, Divider, makeStyles } from '@material-ui/core';
+import { Typography, Button, Divider, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem/CartItem';
 import './styles.sass';
@@ -29,27 +29,35 @@ const useStyles = makeStyles((theme) => (
     {
         width: '100%',
         marginBlock: 10
+    },
+    cardDivider:
+    {
+        width: '100%',
+        marginTop: 15,
+        marginBottom: 10
     }
 }));
 
 const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) => 
 {
     const classes = useStyles();
-    console.log(cart);
 
     const EmptyCart = () =>
     (
-        <Typography variant="subtitle1">You have no items in your shopping cart, start adding some.</Typography>
+        <>
+            <Typography className={classes.typography} variant="h5" gutterBottom>Shopping bag is empty.</Typography>
+            <Button component={Link} to='/phones' variant="contained">Let's shopping!</Button>
+        </>
     );
 
     const FilledCart = () =>
     (
         <>
-            {cart.line_items.map((item, index) => (
-                <>
-                    <CartItem key={item.id} item={item} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
-                    {index !== cart.line_items.length-1 && <Divider className={classes.divider} />}
-                </>
+            {cart.line_items.map((item) => (
+            <div key={item.id} style={{width: '100%'}}>
+                <CartItem item={item} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
+                <Divider className={classes.cardDivider} />
+            </div>
             ))}
         </>
     );
@@ -72,6 +80,7 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                         <Divider className={classes.divider} />
                         { !cart.line_items.length ? <EmptyCart /> : <FilledCart /> }
                     </div>
+                    {cart.line_items.length > 0 &&
                     <div className="order-summary">
                         <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Order summary</Typography>
                         <Divider className={classes.divider} />
@@ -94,7 +103,7 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                         <Button style={{width: '100%'}} variant="contained" onClick={emptyCart}>
                             Empty Cart
                         </Button>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </main>
