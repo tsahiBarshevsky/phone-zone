@@ -1,5 +1,7 @@
 import React from 'react';
 import { Typography, Button, IconButton, makeStyles } from '@material-ui/core';
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import './styles.sass';
 
@@ -8,7 +10,8 @@ const useStyles = makeStyles(() => ({
     title: 
     {
         fontFamily: `'Nunito', sans-serif`,
-        fontWeight: 600
+        fontWeight: 600,
+        letterSpacing: 1
     }
 }));
 
@@ -27,14 +30,18 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
                     <Typography className={classes.title} variant="h6">{item.name}</Typography>
                     <Typography className={classes.typography} variant="subtitle1">{item.line_total.formatted_with_symbol}</Typography>
                 </div>
-                <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Price: {item.price.formatted_with_symbol}</Typography>
+                <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Model's price: {item.price.formatted_with_symbol}</Typography>
                 <div className="options">
-                    <div>
-                        <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>-</Button>
-                        <Typography>{item.quantity}</Typography>
-                        <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity + 1)}>+</Button>
+                    <div className="numeric-quantity-button">
+                        <Button className="button" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>
+                            <RemoveRoundedIcon className="icon" />
+                        </Button>
+                        <Typography className={classes.typography}>{item.quantity}</Typography>
+                        <Button className="button" onClick={() => updateCartQuantity(item.id, item.quantity + 1)}>
+                            <AddRoundedIcon className="icon" />
+                        </Button>
                     </div>
-                <IconButton type="button" onClick={() => removeFromCart(item.id)}><DeleteRoundedIcon /></IconButton>
+                    <IconButton type="button" onClick={() => removeFromCart(item.id)}><DeleteRoundedIcon /></IconButton>
                 </div>
             </div>
         </div>

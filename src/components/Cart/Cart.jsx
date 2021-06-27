@@ -8,6 +8,15 @@ const useStyles = makeStyles((theme) => (
 {
     toolbar: theme.mixins.toolbar,
     typography: { fontFamily: `'Nunito', sans-serif` },
+    note: 
+    { 
+        fontFamily: `'Handlee', sans-serif`,
+        fontWeight: 600,
+        letterSpacing: 1,
+        lineHeight: 1.4,
+        marginTop: 20,
+        marginBottom: 10
+    },
     headerTitle:
     {
         fontFamily: `'Nunito', sans-serif`,
@@ -36,9 +45,12 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
     const FilledCart = () =>
     (
         <>
-                {cart.line_items.map((item) => (
-                    <CartItem item={item} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
-                ))}
+            {cart.line_items.map((item, index) => (
+                <>
+                    <CartItem key={item.id} item={item} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
+                    {index !== cart.line_items.length-1 && <Divider className={classes.divider} />}
+                </>
+            ))}
         </>
     );
 
@@ -63,14 +75,24 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                     <div className="order-summary">
                         <Typography className={classes.typography} variant="subtitle1" color="textSecondary">Order summary</Typography>
                         <Divider className={classes.divider} />
-                        <Typography className={classes.typography}>Itmes: {cart.total_items}</Typography>
-                        <Typography className={classes.typography}>Phones: {cart.total_unique_items}</Typography>
-                        <Typography className={classes.typography}>Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
-                        <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={emptyCart}>
-                            Empty Cart
-                        </Button>
-                        <Button component={Link} to="/checkout" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">
+                        <div className="item">
+                            <Typography className={classes.typography}>Number of models:</Typography>
+                            <Typography className={classes.typography}>{cart.total_unique_items}</Typography>
+                        </div>
+                        <div className="item">
+                            <Typography className={classes.typography}>Total items:</Typography>
+                            <Typography className={classes.typography}>{cart.total_items}</Typography>
+                        </div>
+                        <div className="item">
+                            <Typography className={classes.typography}>Subtotal:</Typography>
+                            <Typography className={classes.typography}>{cart.subtotal.formatted_with_symbol}</Typography>
+                        </div>
+                        <Typography className={classes.note}>The shipping cost will be calculated after you'll fill the checkout form</Typography>
+                        <Button style={{width: '100%'}} component={Link} to="/checkout" type="button" variant="contained">
                             Checkout
+                        </Button>
+                        <Button style={{width: '100%'}} variant="contained" onClick={emptyCart}>
+                            Empty Cart
                         </Button>
                     </div>
                 </div>
