@@ -13,9 +13,10 @@ export default makeStyles(() => ({
     },
     image:
     {
-        width: 90,
+        width: 100,
+        minWidth: 100,
         height: 100,
-        marginRight: 10
+        marginRight: 20
     },
     info:
     {
@@ -25,34 +26,34 @@ export default makeStyles(() => ({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         paddingTop: 5,
-
     },
-    quantityContainer:
+    numericQuantityButton:
     {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        border: '1px solid black',
-        borderRadius: 20,
-        height: 'fit-content'
+        width: 125,
+        height: 'fit-content',
+        border: '1px solid #80808080',
+        borderRadius: 5,
+        backgroundColor: 'white',
+        padding: 1
     },
-    quantityButton:
+    button:
     {
-        backgroundColor: 'transparent',
+        minWidth: 40,
+        width: 40,
+        height: 32,
+        backgroundColor: '#0c6961',
         '&:hover':
         {
-            backgroundColor: 'transparent'
+            backgroundColor: '#0c6961CC'
         }
     },
-    quantityValue:
+    icon:
     {
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingInline: 10,
-        borderRight: '1px solid black',
-        borderLeft: '1px solid black',
+        fontSize: 15,
+        color: 'white'
     },
     options:
     {

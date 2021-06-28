@@ -52,7 +52,8 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: theme.spacing(3),
+    paddingInline: theme.spacing(3),
+    paddingBlock: theme.spacing(5),
     [theme.breakpoints.down('sm')]:
     {
       flexDirection: 'column'

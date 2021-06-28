@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, IconButton, Tooltip } from '@material-ui/core';
+import { Typography, IconButton, Button, Tooltip } from '@material-ui/core';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
@@ -10,24 +10,14 @@ const CartItem = ({product, updateCartQuantity, removeFromCart}) =>
     const classes = useStyles();
 
     const Quantity = () => (
-        <div className={classes.quantityContainer}>
-            <IconButton 
-                className={classes.quantityButton} 
-                type="button" 
-                disableRipple
-                size="small"
-                onClick={() => updateCartQuantity(product.id, product.quantity - 1)}>
-                    <RemoveRoundedIcon style={{color: 'black', fontSize: 18}} />
-            </IconButton>
-            <Typography className={classes.quantityValue}>{product.quantity}</Typography>
-            <IconButton 
-                className={classes.quantityButton} 
-                type="button" 
-                disableRipple
-                size="small"
-                onClick={() => updateCartQuantity(product.id, product.quantity + 1)}>
-                    <AddRoundedIcon style={{color: 'black', fontSize: 18}} />
-            </IconButton>
+        <div className={classes.numericQuantityButton}>
+            <Button className={classes.button} onClick={() => updateCartQuantity(product.id, product.quantity - 1)}>
+                <RemoveRoundedIcon className={classes.icon} />
+            </Button>
+            <Typography className={classes.typography}>{product.quantity}</Typography>
+            <Button className={classes.button} onClick={() => updateCartQuantity(product.id, product.quantity + 1)}>
+                <AddRoundedIcon className={classes.icon} />
+            </Button>
         </div>
     );
 
