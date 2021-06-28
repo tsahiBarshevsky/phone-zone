@@ -3,15 +3,34 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { commerce } from './lib/commerce';
-import { Homepage, Products, Navbar, Cart } from './components';
+import { Homepage, Products, Navbar, Cart, Checkout } from './components';
 import './styles.sass';
 
 const App = () => 
 {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState({});
-    // const [order, setOrder] = useState({});
-    // const [errorMessage, setErrorMessage] = useState('');
+    const [order, setOrder] = useState({});
+    const [errorMessage, setErrorMessage] = useState('');
+    const [numberOfOrders, setNumberOfOrders] = useState(0);
+    
+    const fetchOrders = async () =>
+    {
+        const url = new URL("https://api.chec.io/v1/orders");
+        let headers = 
+        {
+            "X-Authorization": `${process.env.REACT_APP_CHEC_SECRET_KEY}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        };
+        fetch(url, 
+        {
+            method: "GET",
+            headers: headers,
+        })
+        .then(response => response.json())
+        .then(json => setNumberOfOrders(json.data.length));
+    }
 
     const fetchProducts = async () =>
     {
@@ -49,6 +68,26 @@ const App = () =>
         setCart(cart);
     }
 
+    const refreshCart = async () => 
+    {
+        const newCart = await commerce.cart.refresh();
+        setCart(newCart);
+    }
+
+    const captureCheckout = async (checkoutTokenID, newOrder) =>
+    {
+        try 
+        {
+            const incomingOrder = await commerce.checkout.capture(checkoutTokenID, newOrder);
+            setOrder(incomingOrder);
+            refreshCart();
+        } 
+        catch (error)
+        {
+            setErrorMessage(error.data.error.message);
+        }
+    }
+
     const notify = (type, message) =>
     {
         switch (type)
@@ -63,6 +102,7 @@ const App = () =>
     useEffect(() => {
         fetchProducts();
         fetchCart();
+        fetchOrders();
     }, []);
 
     return (
@@ -82,6 +122,13 @@ const App = () =>
                             updateCartQuantity={updateCartQuantity}
                             removeFromCart={removeFromCart}
                             emptyCart={emptyCart} />
+                    </Route>
+                    <Route exact path="/checkout">
+                        <Checkout 
+                            cart={cart} 
+                            order={order} 
+                            captureCheckout={captureCheckout}
+                            error={errorMessage} />
                     </Route>
                 </Switch>
             </div>

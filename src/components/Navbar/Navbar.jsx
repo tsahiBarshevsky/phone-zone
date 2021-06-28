@@ -46,6 +46,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                 classes={{paper: classes.paper}} 
                 transitionDuration={600} 
                 open={openDrawer} 
+                onOpen={handleOpen}
                 onClose={handleClose}>
                     <div className={classes.header}>
                         <Typography className={classes.typography} variant="h5">Shopping bag</Typography>
