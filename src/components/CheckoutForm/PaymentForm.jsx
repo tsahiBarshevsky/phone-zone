@@ -47,9 +47,11 @@ const PaymentForm = ({checkoutToken, shippingData, backStep, captureCheckout, ne
         }
     }
 
+    console.log(checkoutToken);
+
     return (
         <>
-            <Review checkoutToken={checkoutToken} />
+            <Review checkoutToken={checkoutToken} shippingOption={shippingData.shippingOption} />
             <Divider />
             <Typography variant="h6" gutterBottom style={{margin: '20px 0'}}>Payment method</Typography>
             <Elements stripe={stripePromise}>
@@ -61,7 +63,7 @@ const PaymentForm = ({checkoutToken, shippingData, backStep, captureCheckout, ne
                             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                                 <Button variant="outlined" onClick={backStep}>Back</Button>
                                 <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                                    Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                                    Complete order
                                 </Button>
                             </div>
                         </form>
