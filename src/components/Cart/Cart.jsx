@@ -47,7 +47,7 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
     (
         <>
             <Typography className={classes.typography} variant="h5" gutterBottom>Shopping bag is empty.</Typography>
-            <Button component={Link} to='/phones' variant="contained">Let's shopping!</Button>
+            <Button component={Link} to='/phones' variant="contained">Start shopping!</Button>
         </>
     );
 

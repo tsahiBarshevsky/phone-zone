@@ -30,7 +30,7 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
         }
 
         generateToken();
-    }, [cart]);
+    }, [cart, history]);
 
     const nextStep = () => setActiveStep((prevActiveStip) => prevActiveStip + 1);
     const backStep = () => setActiveStep((prevActiveStip) => prevActiveStip - 1);

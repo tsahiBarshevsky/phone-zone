@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Homepage = ({products}) => 
+const Homepage = ({products, numberOfOrders}) => 
 {
     const classes = useStyles();
 
@@ -123,6 +123,8 @@ const Homepage = ({products}) =>
                 </Carousel>
             </div>
             <div className="devices">
+                <Typography>Number of orders: {numberOfOrders}</Typography>
+                <Typography>Number of phones: {products.length}</Typography>
                 <Typography 
                     style={{alignSelf: 'center'}} 
                     className={classes.typography} 

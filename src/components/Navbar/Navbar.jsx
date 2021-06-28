@@ -31,7 +31,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                         <img src={logo} alt="Phone Zone" height="50px" className={classes.image} />
                     </Link>
                     <div className={classes.grow} />
-                    {location.pathname !== '/cart' && (
+                    {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                     <div className={classes.button}>
                         <IconButton onClick={handleOpen} aria-label="Show card items" color="inherit">
                             <Badge badgeContent={cart.total_items} color="secondary">
@@ -78,12 +78,20 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                                 {Object.keys(cart).length > 0 && cart.line_items.length > 0 ? cart.subtotal.formatted_with_symbol : '$0.00'}
                             </Typography>
                         </div>
+                        {Object.keys(cart).length > 0 && cart.line_items.length > 0 ?
                         <Button 
                             variant="outlined" 
                             component={Link} 
                             to='/cart' 
                             onClick={handleClose}
                             className={classes.goToCart}>Checkout</Button>
+                        :
+                        <Button 
+                            variant="outlined" 
+                            component={Link} 
+                            to='/phones' 
+                            onClick={handleClose}
+                            className={classes.goToCart}>Start shopping!</Button>}
                 </div>
             </SwipeableDrawer>
         </>

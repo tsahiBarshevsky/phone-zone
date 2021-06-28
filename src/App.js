@@ -14,7 +14,7 @@ const App = () =>
     const [errorMessage, setErrorMessage] = useState('');
     const [numberOfOrders, setNumberOfOrders] = useState(0);
     
-    const fetchOrders = async () =>
+    const fetchNumberOfOrders = async () =>
     {
         const url = new URL("https://api.chec.io/v1/orders");
         let headers = 
@@ -102,7 +102,7 @@ const App = () =>
     useEffect(() => {
         fetchProducts();
         fetchCart();
-        fetchOrders();
+        fetchNumberOfOrders();
     }, []);
 
     return (
@@ -111,7 +111,7 @@ const App = () =>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <Switch>
                     <Route exact path="/">
-                        <Homepage products={products} />
+                        <Homepage products={products} numberOfOrders={numberOfOrders} />
                     </Route>
                     <Route exact path="/phones">
                         <Products products={products} onAddToCart={addToCart} />
