@@ -12,30 +12,10 @@ export default makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
-  title: {
-    flexGrow: 1,
-    alignItems: 'center',
-    display: 'flex',
-    textDecoration: 'none',
-  },
+  
   image: {
     marginRight: '10px',
     cursor: 'pointer'
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  
-  
-  goToCart:
-  {
-    width: '100%'
   },
   divider:
   {
@@ -99,5 +79,25 @@ export default makeStyles((theme) => ({
   typography:
   {
     fontFamily: `'Nunito', sans-serif`,
+  },
+  button:
+  {
+    color: '#0c6961',
+    width: '100%',
+    border: '2px solid #0c6961',
+    borderRadius: 25,
+    fontSize: 16,
+    height: 38,
+    textTransform: 'capitalize',
+    backgroundColor: 'transparent',
+    letterSpacing: 1,
+    transition: 'all 0.2s ease-out',
+    marginTop: 10,
+    '&:hover':
+    {
+      color: 'white',
+      backgroundColor: '#0c6961',
+      transition: 'all 0.2s ease-in'
+    }
   }
 }));

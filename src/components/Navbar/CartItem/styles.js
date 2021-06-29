@@ -7,16 +7,17 @@ export default makeStyles(() => ({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         width: '100%',
+        height: 110,
         marginBottom: 20,
-        cursor: 'default'
-        // backgroundColor: 'lightskyblue',
+        cursor: 'default',
     },
     image:
     {
         width: 100,
         minWidth: 100,
         height: 100,
-        marginRight: 20
+        marginRight: 20,
+        alignSelf: 'center'
     },
     info:
     {
