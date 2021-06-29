@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const drawerWidth = 0;
 
 export default makeStyles((theme) => ({
-  appBar: {
+  appBar: 
+  {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
     [theme.breakpoints.up('sm')]: {
@@ -19,6 +20,7 @@ export default makeStyles((theme) => ({
   },
   image: {
     marginRight: '10px',
+    cursor: 'pointer'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -97,9 +99,5 @@ export default makeStyles((theme) => ({
   typography:
   {
     fontFamily: `'Nunito', sans-serif`,
-  },
-  link:
-  {
-    height: 52
   }
 }));

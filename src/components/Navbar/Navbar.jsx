@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Badge, Typography, Button, Divider, Swipea
 import { Link, useLocation } from 'react-router-dom';
 import ShoppongCart from '@material-ui/icons/ShoppingCart';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { animateScroll } from 'react-scroll';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 import logo from '../../assets/logo.png';
@@ -23,13 +24,19 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
         setOpenDrawer(false);
     }
 
+    const toggleHome = () => 
+    {
+        if (window.location.pathname === '/')
+            animateScroll.scrollToTop();
+        else
+            window.location.replace('/');
+    }
+
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
-                    <Link to='/' className={classes.link}>
-                        <img src={logo} alt="Phone Zone" height="50px" className={classes.image} />
-                    </Link>
+                    <img onClick={toggleHome} src={logo} alt="Phone Zone" height="50px" className={classes.image} />
                     <div className={classes.grow} />
                     {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                     <div className={classes.button}>

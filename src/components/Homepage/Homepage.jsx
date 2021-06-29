@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Typography ,Paper, Grid, Button, makeStyles } from '@material-ui/core';
-import { heroItems, customersTestimonial } from './Items';
+import { customersTestimonial } from './Items';
 import { Link } from 'react-router-dom';
 import './styles.sass';
 
@@ -87,13 +87,6 @@ const Homepage = ({products, numberOfOrders}) =>
         )
     }
 
-    const HeroItem = ({item}) => (
-        <Paper className="carousel">
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-        </Paper>
-    );
-
     const TestimonialItem = ({customer}) => (
         <Paper className="testimonial">
             <Typography 
@@ -116,11 +109,7 @@ const Homepage = ({products, numberOfOrders}) =>
         <div className="homepage-container">
             <div className={classes.toolbar} />
             <div className="hero">
-                <Carousel indicators={false} timeout={1200}>
-                {
-                    heroItems.map((item, i) => <HeroItem key={i} item={item} />)
-                }
-                </Carousel>
+                
             </div>
             <div className="devices">
                 <Typography>Number of orders: {numberOfOrders}</Typography>

@@ -1,10 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Button, IconButton, Collapse, Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox, Select, MenuItem } from '@material-ui/core';
+import { Button, IconButton, Collapse, Grid, Typography, Slider, FormControl, FormGroup, FormControlLabel, Checkbox, Select, MenuItem, OutlinedInput, makeStyles } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useTheme } from '@material-ui/core/styles';
+import { createMuiTheme, useTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Product from './Product/Product';
 import useStyles from './styles';
+
+const outerTheme = createMuiTheme({
+    typography: { fontFamily: `'Nunito', sans-serif` },
+    overrides:
+    {
+        MuiSlider: 
+        {
+            thumb: { color: '#0c6961' },
+            track: { color: '#0c6961' },
+            rail:  { color: 'black' }
+        }
+    }
+});
+
+const useOutlinedInputStyles = makeStyles(() => ({
+    root: 
+    {
+        "&:hover $notchedOutline": { borderColor: "#0c6961" },
+        "&$focused $notchedOutline": { borderColor: "#0c6961" }
+    },
+    focused: {},
+    notchedOutline: {}
+}));
 
 const Products = ({products, onAddToCart}) => 
 {
@@ -31,6 +54,7 @@ const Products = ({products, onAddToCart}) =>
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const classes = useStyles();
+    const outlinedInputClasses = useOutlinedInputStyles();
 
     useEffect(() => {
         function getPricesRange()
@@ -195,60 +219,75 @@ const Products = ({products, onAddToCart}) =>
                         </IconButton>
                     </div>
                     <Collapse in={expanded} timeout='auto' unmountOnExit>
-                        <Typography className={classes.typography} variant="h6">Sory by:</Typography>
-                        <FormControl style={{width: '100%'}}>
-                            <Select value={sortType} onChange={handleSortChange}>
-                                <MenuItem value={'Highest price to lowest'}>Highest price to lowest</MenuItem>
-                                <MenuItem value={'Lowest price to highest'}>Lowest price to highest</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Typography className={classes.typography} variant="h6">Sort by:</Typography>
+                        <MuiThemeProvider theme={outerTheme}>
+                            <FormControl variant="outlined" className={classes.formControl}>
+                                <Select
+                                    value={sortType}
+                                    onChange={handleSortChange} 
+                                    disableUnderline
+                                    input={
+                                        <OutlinedInput classes={outlinedInputClasses} />
+                                    }>
+                                    <MenuItem value={'Highest price to lowest'}>Highest price to lowest</MenuItem>
+                                    <MenuItem value={'Lowest price to highest'}>Lowest price to highest</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </MuiThemeProvider>
                         <Typography className={classes.typography} variant="h6">Price range</Typography>
-                        <div className={classes.priceSlider}>
-                            <Slider
-                                min={borders[0]}
-                                max={borders[1]}
-                                value={price}
-                                step={1}
-                                onChange={handleRangeChange} />
-                        </div> 
+                        <MuiThemeProvider theme={outerTheme}>
+                            <div className={classes.priceSlider}>
+                                <Slider
+                                    min={borders[0]}
+                                    max={borders[1]}
+                                    value={price}
+                                    step={1}
+                                    onChange={handleRangeChange} />
+                            </div> 
+                        </MuiThemeProvider>
                         <div className={classes.range}>
                             <Typography className={classes.caption} variant="caption">${price[0]}</Typography>
                             <Typography className={classes.caption} variant="caption">${price[1]}</Typography>
                         </div>
                         <div style={{marginTop: 20}} />
                         <Typography className={classes.typography} variant="h6">Brand</Typography>
-                        <FormControl component="fieldset">
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={<Checkbox checked={Samsung} onChange={handleBrandChange} name="Samsung" />}
-                                    label="Samsung" />
-                                <FormControlLabel
-                                    control={<Checkbox checked={Apple} onChange={handleBrandChange} name="Apple" />}
-                                    label="Apple" />
-                                <FormControlLabel
-                                    control={<Checkbox checked={OnePlus} onChange={handleBrandChange} name="OnePlus" />}
-                                    label="OnePlus" />
-                                <FormControlLabel
-                                    control={<Checkbox checked={Xiaomi} onChange={handleBrandChange} name="Xiaomi" />}
-                                    label="Xiaomi" />
-                                <FormControlLabel
-                                    control={<Checkbox checked={Poco} onChange={handleBrandChange} name="Poco" />}
-                                    label="Poco" />
-                            </FormGroup>
-                        </FormControl>
+                        <MuiThemeProvider theme={outerTheme}>
+                            <FormControl component="fieldset">
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Samsung} onChange={handleBrandChange} name="Samsung" />}
+                                        label="Samsung" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Apple} onChange={handleBrandChange} name="Apple" />}
+                                        label="Apple" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={OnePlus} onChange={handleBrandChange} name="OnePlus" />}
+                                        label="OnePlus" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Xiaomi} onChange={handleBrandChange} name="Xiaomi" />}
+                                        label="Xiaomi" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Poco} onChange={handleBrandChange} name="Poco" />}
+                                        label="Poco" />
+                                </FormGroup>
+                            </FormControl>
+                        </MuiThemeProvider>
+                        <div style={{marginTop: 20}} />
                         <Typography className={classes.typography} variant="h6">Release year</Typography>
-                        <FormControl component="fieldset">
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={<Checkbox checked={year2020} onChange={handleYearChange} name="year2020" />}
-                                    label="2020" />
-                                <FormControlLabel
-                                    control={<Checkbox checked={year2021} onChange={handleYearChange} name="year2021" />}
-                                    label="2021" />
-                            </FormGroup>
-                        </FormControl>
-                        <div style={{paddingBottom: 15}} />
-                        <Button type="button" variant="contained" color="primary" onClick={() => clearFilters()}>Clear</Button>
+                        <MuiThemeProvider theme={outerTheme}>
+                            <FormControl component="fieldset">
+                                <FormGroup>
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={year2020} onChange={handleYearChange} name="year2020" />}
+                                        label="2020" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={year2021} onChange={handleYearChange} name="year2021" />}
+                                        label="2021" />
+                                </FormGroup>
+                            </FormControl>
+                        </MuiThemeProvider>
+                        <div style={{marginBottom: 20}} />
+                        <Button className={classes.button} onClick={() => clearFilters()}>Clear filters</Button>
                     </Collapse>
                 </div>
                 {/* <h1>{products.filter(applyFilters).length}</h1> */}

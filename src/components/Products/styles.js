@@ -84,7 +84,7 @@ export default makeStyles((theme) => ({
   {
     paddingInline: 5,
     marginTop: -5,
-    marginBottom: -15,
+    marginBottom: -10,
     cursor: 'default',
     width: 250,
     [theme.breakpoints.down('sm')]:
@@ -121,5 +121,30 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  formControl:
+  {
+    width: '100%',
+    marginTop: 5,
+    marginBottom: 20
+  },
+  button:
+  {
+    color: '#0c6961',
+    width: '100%',
+    border: '2px solid #0c6961',
+    borderRadius: 25,
+    fontSize: 16,
+    height: 38,
+    textTransform: 'capitalize',
+    backgroundColor: 'transparent',
+    letterSpacing: 1,
+    transition: 'all 0.2s ease-out',
+    '&:hover':
+    {
+      color: 'white',
+      backgroundColor: '#0c6961',
+      transition: 'all 0.2s ease-in'
+    }
   }
 }));
