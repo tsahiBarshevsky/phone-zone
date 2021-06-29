@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
+import Logo from '../../../assets/logo.png';
 
 const steps = ['Shipping address', 'Payment details'];
 
@@ -16,6 +17,7 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
     const [isFinished, setIsFinished] = useState(false);
     const classes = useStyles();
     const history = useHistory();
+    var finishOrder = false;
 
     useEffect(() => {
         const generateToken = async () =>
@@ -24,14 +26,17 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
             {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
                 setCheckoutToken(token);
-            } catch (error) {
-                // history.push('/');
-                console.log(error);
+            } catch (error) 
+            {
+                if (!finishOrder)
+                    history.push('/');
+                else
+                    console.log('Its Confirmation');
             }
         }
 
         generateToken();
-    }, [cart, history]);
+    }, [cart, history, finishOrder]);
 
     const nextStep = () => setActiveStep((prevActiveStip) => prevActiveStip + 1);
     const backStep = () => setActiveStep((prevActiveStip) => prevActiveStip - 1);
@@ -47,17 +52,12 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
         setTimeout(() => { setIsFinished(true); }, 3000);
     }
 
-    let Confirmation = () => order.customer ? (
+    let Confirmation = () => isFinished ? (
         <>
-            <Typography variant="h5">Thank for you purchase, {order.customer.firstname} {order.customer.lastname}</Typography>
-            <Divider className={classes.divider} />
-            <Typography variant="subtitle2">Order ref: {order.customer_reference}</Typography>
-            <br />
-            <Button variant="outlined" type="button" component={Link} to='/'>Back to home</Button>
-        </>
-    ) : isFinished ? (
-        <>
-            <Typography variant="h5">Thank for you purchase.</Typography>
+            <Typography className={classes.typography} variant="h5" align="center">
+                Thank you for your purchase! An email with an order summary and confirmation has sent to you.
+            </Typography>
+            <img src={Logo} alt="Phone Zone" className={classes.logo} />
             <Divider className={classes.divider} />
             <br />
             <Button variant="outlined" type="button" component={Link} to='/'>Back to home</Button>
@@ -99,7 +99,7 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
                             </Step>
                         ))}
                     </Stepper>
-                    {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
+                    {activeStep === steps.length ? finishOrder = true && <Confirmation /> : checkoutToken && <Form />}
                 </Paper>
             </main>
         </div>

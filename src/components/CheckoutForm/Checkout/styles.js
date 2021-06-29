@@ -93,5 +93,15 @@ export default makeStyles((theme) => ({
     lineHeight: 1,
     letterSpacing: 2,
     zIndex: 2
+  },
+  typography:
+  {
+    fontFamily: `'Nunito', sans-serif`
+  },
+  logo:
+  {
+    width: 'auto',
+    height: 'auto',
+    marginTop: 20
   }
 }));
