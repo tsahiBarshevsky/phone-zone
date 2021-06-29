@@ -1,11 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Image from '../../../assets/checkout.jpg';
 
 export default makeStyles((theme) => ({
   appBar: {
     position: 'relative',
   },
   toolbar: theme.mixins.toolbar,
-  layout: {
+  root:
+  {
+    cursor: 'default'
+  },
+  layout:
+  {
     marginTop: '5%',
     width: 'auto',
     marginLeft: theme.spacing(2),
@@ -49,4 +55,43 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pageHeader:
+  {
+    height: 250,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    color: 'white',
+    paddingInline: 15,
+    backgroundColor: '#0c6961',
+    zIndex: 1,
+    '&::after':
+    {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      opacity: 0.15,
+      backgroundImage: `url(${Image})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '50% 0',
+      backgroundPositionY: 'center',
+      backgroundSize: 'cover',
+      pointerEvents: 'none',
+      filter: 'blur(1.5px)'
+    }
+  },
+  headerTitle:
+  {
+    fontFamily: `'Nunito', sans-serif`,
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    lineHeight: 1,
+    letterSpacing: 2,
+    zIndex: 2
+  }
 }));

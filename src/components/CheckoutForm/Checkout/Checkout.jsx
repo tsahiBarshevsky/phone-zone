@@ -25,7 +25,8 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
                 setCheckoutToken(token);
             } catch (error) {
-                history.push('/');
+                // history.push('/');
+                console.log(error);
             }
         }
 
@@ -83,12 +84,14 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
         : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} captureCheckout={captureCheckout} timeout={timeout} />
 
     return (
-        <>
+        <div className={classes.root}>
             <CssBaseline />
             <div className={classes.toolbar} />
+            <div className={classes.pageHeader}>
+                <Typography variant="h3" className={classes.headerTitle}>Checkout</Typography>
+            </div>
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
-                    <Typography variant="h4" align="center">Checkout</Typography>
                     <Stepper activeStep={activeStep} className={classes.stepper}>
                         {steps.map((step) => (
                             <Step key={step}>
@@ -99,7 +102,7 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
                     {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
                 </Paper>
             </main>
-        </>
+        </div>
     )
 }
 

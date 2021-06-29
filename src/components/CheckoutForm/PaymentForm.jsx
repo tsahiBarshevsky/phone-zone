@@ -1,14 +1,24 @@
 import React from 'react';
-import { Typography, Button, Divider } from '@material-ui/core';
+import { Typography, Button, Divider, makeStyles } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
+
+const useStyles = makeStyles(() => (
+{
+    typography: 
+    { 
+        fontFamily: `'Nunito', sans-serif`,
+        margin: '20px 0'
+    }
+}));
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({checkoutToken, shippingData, backStep, captureCheckout, nextStep, timeout}) => 
 {
-    console.log(shippingData);
+    const classes = useStyles();
+
     const handleSubmit = async (event, elements, stripe) =>
     {
         event.preventDefault();
@@ -47,13 +57,11 @@ const PaymentForm = ({checkoutToken, shippingData, backStep, captureCheckout, ne
         }
     }
 
-    console.log(checkoutToken);
-
     return (
         <>
             <Review checkoutToken={checkoutToken} shippingOption={shippingData.shippingOption} />
             <Divider />
-            <Typography variant="h6" gutterBottom style={{margin: '20px 0'}}>Payment method</Typography>
+            <Typography variant="h6" gutterBottom className={classes.typography}>Payment method</Typography>
             <Elements stripe={stripePromise}>
                 <ElementsConsumer>
                     {({elements, stripe}) => (

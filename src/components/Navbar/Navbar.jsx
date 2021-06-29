@@ -49,7 +49,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                 onOpen={handleOpen}
                 onClose={handleClose}>
                     <div className={classes.header}>
-                        <Typography className={classes.typography} variant="h5">Shopping bag</Typography>
+                        <Typography className={classes.typography} variant="h5">Shopping bag ({cart.total_items})</Typography>
                         <IconButton onClick={handleClose}>
                             <CloseRoundedIcon />
                         </IconButton>
@@ -92,7 +92,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                             to='/phones' 
                             onClick={handleClose}
                             className={classes.goToCart}>Start shopping!</Button>}
-                </div>
+                    </div>
             </SwipeableDrawer>
         </>
     )
