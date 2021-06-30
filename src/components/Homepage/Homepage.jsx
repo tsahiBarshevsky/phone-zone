@@ -8,6 +8,25 @@ import './styles.sass';
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     typography: { fontFamily: `'Nunito', sans-serif` },
+    title:
+    {
+        fontFamily: `'Big Shoulders', sans-serif`,
+        textTransform: 'uppercase',
+        color: '#ffffffCC',
+        lineHeight: 1.1,
+        zIndex: 2,
+        '&:after':
+        {
+            content: "'new one today'",
+            color: 'white'
+        }
+    },
+    subtitle:
+    {
+        fontFamily: `'Nunito', sans-serif`,
+        lineHeight: 1.3,
+        zIndex: 2,
+    },
     opinion: 
     { 
         fontFamily: `'Nunito', sans-serif`,
@@ -109,9 +128,13 @@ const Homepage = ({products, numberOfOrders}) =>
         <div className="homepage-container">
             <div className={classes.toolbar} />
             <div className="hero">
-                
+                <Typography variant='h3' className={classes.title}>don't stay far behind everyone with an old smartphone, buy a </Typography>
+                <div className="subtitle">
+                    <Typography variant="h6" className={classes.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum maximus euismod. Proin semper erat a lorem egestas iaculis. Curabitur accumsan ex augue, et imperdiet ligula sollicitudin ac.</Typography>
+                </div>
+                <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
-            <div className="devices">
+            {/* <div className="devices">
                 <Typography>Number of orders: {numberOfOrders}</Typography>
                 <Typography>Number of phones: {products.length}</Typography>
                 <Typography 
@@ -124,8 +147,8 @@ const Homepage = ({products, numberOfOrders}) =>
                 <Button component={Link} to='/phones' className={classes.button}>
                     <span>See more</span>
                 </Button>
-            </div>
-            <div className="testimonial-container">
+            </div> */}
+            {/* <div className="testimonial-container">
                 <Typography 
                     style={{alignSelf: 'center'}} 
                     className={classes.typography} 
@@ -137,7 +160,7 @@ const Homepage = ({products, numberOfOrders}) =>
                     customersTestimonial.map((customer, i) => <TestimonialItem key={i} customer={customer} />)
                 }
                 </Carousel>
-            </div>
+            </div> */}
         </div>
     )
 }
