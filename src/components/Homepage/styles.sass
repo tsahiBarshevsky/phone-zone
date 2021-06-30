@@ -2,7 +2,8 @@
 
 $primary: #0c6961
 $secondary: #f47f60
-$background: #fbf3f0
+$background: #fafafa
+// $background: #fbf3f0
 
 /* === Breakpoints === */
 
@@ -14,9 +15,11 @@ $lg: 1920px
 
 .homepage-container
     cursor: default
+    background-color: $background
 
     .hero
-        height: 500px
+        height: 630px
+        width: 100%
         display: flex
         flex-direction: column
         justify-content: center
@@ -24,18 +27,14 @@ $lg: 1920px
         position: relative
         color: white
         z-index: 1
-        padding-inline: 175px
+        padding-inline: 200px
         background-color: $primary
 
         @media screen and ( max-width: $md )
             padding-inline: 125px
 
         @media screen and ( max-width: $sm )
-            padding: 45px 20px
-            height: fit-content
-
-        @media screen and ( max-width: $xs )
-            padding: 45px 20px
+            padding: 45px 30px
             height: fit-content
 
         &::after
@@ -56,7 +55,7 @@ $lg: 1920px
 
         .subtitle
             width: 50%
-            margin: 20px 0 50px // top sides bottom
+            margin: 30px 0 60px // top sides bottom
 
             @media screen and ( max-width: $sm )
                 width: 75%
@@ -81,6 +80,58 @@ $lg: 1920px
             &:hover
                 color: white
                 background-color: $secondary
+
+    .about-us
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 40px 20px
+        overflow-x: hidden
+        background-color: rgba(lightskyblue, 0.5)
+
+        .wrapper
+            display: flex
+            justify-content: space-between
+            align-items: center
+            //width: 50%
+
+            @media screen and ( max-width: $xs )
+                flex-direction: column
+
+            .about-image
+                width: 400px
+                height: auto
+
+                @media screen and ( max-width: $xs )
+                    width: 100%
+
+    .statistics
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        position: relative
+        z-index: 1
+        padding: 30px 0
+        height: fit-content
+        background-color: rgba(black, 0.3)
+
+        &::after
+            content: ''
+            display: block
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 100%
+            opacity: 0.1
+            background-image: url('../../assets/statisitcs.jpg')
+            background-repeat: no-repeat
+            background-position: 50% center
+            background-size: cover
+            pointer-events: none
+            filter: blur(1.5px)
 
     .paper
         height: 750px
