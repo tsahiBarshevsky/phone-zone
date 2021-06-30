@@ -12,7 +12,6 @@ $lg: 1920px
     align-items: flex-start
     width: 100%
     height: 212px
-    //border: 1px solid black
     padding-block: 5px
     margin-block: 10px
 
@@ -47,7 +46,6 @@ $lg: 1920px
         width: 100%
         height: 100%
         padding-right: 20px
-        //background-color: lightblue
 
         @media screen and ( max-width: $sm )
             padding-right: 0
@@ -57,7 +55,6 @@ $lg: 1920px
             justify-content: space-between
             align-items: center
             width: 100%
-            //background-color: rgba(blue, 0.2)
             margin-bottom: 10px
 
         .options
@@ -66,7 +63,9 @@ $lg: 1920px
             align-items: flex-end
             width: 100%
             height: 100%
-            //background-color: rgba(blue, 0.2)
+
+            @media screen and ( max-width: $sm )
+                margin-top: 20px
 
             .numeric-quantity-button
                 display: flex

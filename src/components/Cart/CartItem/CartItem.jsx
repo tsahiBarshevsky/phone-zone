@@ -45,7 +45,7 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
                     </div>
                     <Tooltip title="Remove from cart" placement="left" enterNextDelay={1000}>
                         <span>
-                            <IconButton type="button" onClick={() => removeFromCart(item.id)}>
+                            <IconButton type="button" size="small" onClick={() => removeFromCart(item.id)}>
                                 <DeleteRoundedIcon />
                             </IconButton>
                         </span>
@@ -53,25 +53,6 @@ const CartItem = ({item, updateCartQuantity, removeFromCart}) =>
                 </div>
             </div>
         </div>
-        // <Card className={classes.root}>
-        //     <CardContent className={classes.cardContent}>
-        //         <div className={classes.imageContainer}>
-        //             <img src={item.media.source} alt={item.name} className={classes.media} />
-        //         </div>
-        //         <div className={classes.info}>
-        //             <Typography variant="h6">{item.name}</Typography>
-        //             <Typography variant="subtitle1">{item.line_total.formatted_with_symbol}</Typography>
-        //         </div>
-        //     </CardContent>
-        //     <CardActions className={classes.cartActions}>
-        //         <div className={classes.buttons}>
-        //             <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>-</Button>
-        //             <Typography>{item.quantity}</Typography>
-        //             <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity + 1)}>+</Button>
-        //         </div>
-        //         <Button variant="contained" type="button" color="secondary" onClick={() => removeFromCart(item.id)}>Remove</Button>
-        //     </CardActions>
-        // </Card>
     )
 }
 

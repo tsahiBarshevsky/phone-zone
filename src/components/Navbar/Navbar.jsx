@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Badge, Typography, Button, Divider, SwipeableDrawer } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Badge, Typography, Button, Divider, SwipeableDrawer, Tooltip } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
-import ShoppongCart from '@material-ui/icons/ShoppingCart';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { animateScroll } from 'react-scroll';
+import { FiShoppingCart } from 'react-icons/fi';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 import logo from '../../assets/logo.png';
@@ -40,11 +40,15 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                     <div className={classes.grow} />
                     {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                     <div>
-                        <IconButton onClick={handleOpen} aria-label="Show card items" color="inherit">
-                            <Badge badgeContent={cart.total_items} color="secondary">
-                                <ShoppongCart />
-                            </Badge>
-                        </IconButton>
+                        <Tooltip title="Shopping bag" placement="left" enterNextDelay={1000}>
+                            <span>
+                                <IconButton onClick={handleOpen} aria-label="Show card items" color="inherit">
+                                    <Badge badgeContent={cart.total_items} color="secondary">
+                                        <FiShoppingCart />
+                                    </Badge>
+                                </IconButton>
+                            </span>
+                        </Tooltip>
                     </div> )}
                 </Toolbar>
             </AppBar>

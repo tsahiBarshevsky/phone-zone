@@ -12,7 +12,9 @@ export default makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
-  
+  grow: {
+    flexGrow: 1,
+  },
   image: {
     marginRight: '10px',
     cursor: 'pointer'

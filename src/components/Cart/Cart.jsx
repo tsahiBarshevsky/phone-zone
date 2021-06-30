@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Divider, makeStyles } from '@material-ui/core';
+import { Typography, Button, Divider, makeStyles, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem/CartItem';
 import './styles.sass';
@@ -36,6 +36,44 @@ const useStyles = makeStyles((theme) => (
         width: '100%',
         marginTop: 15,
         marginBottom: 10
+    },
+    fillButton:
+    {
+        color: '#0c6961',
+        width: 170,
+        border: '2px solid #0c6961',
+        borderRadius: 25,
+        fontSize: 16,
+        height: 38,
+        textTransform: 'capitalize',
+        backgroundColor: 'transparent',
+        letterSpacing: 1,
+        transition: 'all 0.2s ease-out',
+        '&:hover':
+        {
+            color: 'white',
+            backgroundColor: '#0c6961',
+            transition: 'all 0.2s ease-in'
+        }
+    },
+    unfillButton:
+    {
+        color: 'white',
+        width: '100%',
+        border: '2px solid #0c6961',
+        borderRadius: 25,
+        fontSize: 16,
+        height: 38,
+        textTransform: 'capitalize',
+        backgroundColor: '#0c6961',
+        letterSpacing: 1,
+        transition: 'all 0.2s ease-out',
+        '&:hover':
+        {
+            color: '#0c6961',
+            backgroundColor: 'transparent',
+            transition: 'all 0.2s ease-in'
+        }
     }
 }));
 
@@ -47,7 +85,9 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
     (
         <>
             <Typography className={classes.typography} variant="h5" gutterBottom>Shopping bag is empty.</Typography>
-            <Button component={Link} to='/phones' variant="contained">Start shopping!</Button>
+            <Box mt={4}>
+                <Button className={classes.fillButton} component={Link} to='/phones'>Start shopping!</Button>
+            </Box>
         </>
     );
 
@@ -76,7 +116,7 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                 <div className="cart">
                     <div className="products">
                         <Typography className={classes.typography} variant="h6" color="textSecondary">
-                            {cart.line_items.length === 1 ? 'Your selection' : 'Your selections'}
+                            {cart.line_items.length <= 1 ? 'Your selection' : 'Your selections'}
                         </Typography>
                         <Divider className={classes.divider} />
                         { !cart.line_items.length ? <EmptyCart /> : <FilledCart /> }
@@ -98,10 +138,12 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
                             <Typography className={classes.typography}>{cart.subtotal.formatted_with_symbol}</Typography>
                         </div>
                         <Typography className={classes.note}>The shipping cost will be calculated after you'll fill the checkout form</Typography>
-                        <Button style={{width: '100%'}} component={Link} to="/checkout" type="button" variant="contained">
-                            Checkout
-                        </Button>
-                        <Button style={{width: '100%'}} variant="contained" onClick={emptyCart}>
+                        <Box mb={1} style={{width:'100%'}}>
+                            <Button className={classes.fillButton} style={{width: '100%'}} component={Link} to="/checkout">
+                                Checkout
+                            </Button>
+                        </Box>
+                        <Button className={classes.unfillButton} onClick={emptyCart}>
                             Empty Cart
                         </Button>
                     </div>}
@@ -109,15 +151,6 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
             </div>
         </main>
     )
-
-
-    // return (
-    //     <Container className={classes.main}>
-    //         <div className={classes.toolbar} />
-    //         <Typography className={classes.title} variant="h4" gutterBottom>Your shopping cart</Typography>
-    //         { !cart.line_items.length ? <EmptyCart /> : <FilledCart /> }
-    //     </Container>
-    // )
 }
 
 export default Cart;
