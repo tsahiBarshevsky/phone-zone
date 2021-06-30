@@ -110,7 +110,7 @@ const Cart = ({cart, updateCartQuantity, removeFromCart, emptyCart}) =>
         <main className="main">
             <div className={classes.toolbar} />
             <div className="header">
-                <Typography variant="h3" className={classes.headerTitle}>Shopping bag</Typography>
+                <Typography variant="h3" className={classes.headerTitle}>Cart</Typography>
             </div>
             <div className="cart-container">
                 <div className="cart">

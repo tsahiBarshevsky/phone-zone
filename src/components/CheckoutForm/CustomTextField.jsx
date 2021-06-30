@@ -1,10 +1,6 @@
 import React from 'react';
-import { TextField, Grid, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { TextField, Grid } from '@material-ui/core';
 import { useFormContext, Controller } from 'react-hook-form';
-
-const theme = createMuiTheme({
-    typography: { fontFamily: `'Nunito', sans-serif` },
-});
 
 const FormInput = ({name, label}) => 
 {
@@ -13,7 +9,7 @@ const FormInput = ({name, label}) =>
     return (
         <Grid item xs={12} sm={6}>
             <Controller 
-                render={({ field }) => <MuiThemeProvider theme={theme}><TextField {...field} required label={label} fullWidth /></MuiThemeProvider>}
+                render={({ field }) => <TextField {...field} InputProps={{ style: { fontFamily: 'Nunito' } }} required label={label} fullWidth />}
                 as={TextField} 
                 defaultValue=""
                 control={control} 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { InputLabel, Select, MenuItem, Button, Grid, Typography, makeStyles } from '@material-ui/core';
+import { InputLabel, Select, MenuItem, Button, Grid, Typography, makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { commerce } from '../../lib/commerce';
@@ -7,8 +7,28 @@ import FormInput from './CustomTextField';
 
 const useStyles = makeStyles(() => (
 {
-    typography: { fontFamily: `'Nunito', sans-serif` }
+    typography: { fontFamily: `'Nunito', sans-serif` },
+    next:
+    {
+        color: 'white',
+        backgroundColor: '#0c6961',
+        textTransform: 'capitalize',
+        fontSize: 15,
+        '&:hover':
+        {
+            backgroundColor: '#0c6961E6'
+        }
+    },
+    back:
+    {
+        textTransform: 'capitalize',
+        fontSize: 15,
+    }
 }));
+
+const outerTheme = createMuiTheme({
+    typography: { fontFamily: `'Nunito', sans-serif` }    
+});
 
 const AddressForm = ({checkoutToken, next}) => 
 {
@@ -75,40 +95,46 @@ const AddressForm = ({checkoutToken, next}) =>
                         <FormInput name='city' label='City' />
                         <FormInput name='zip' label='ZIP Code ' />
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Shipping Country</InputLabel>
-                            <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
-                                {countries.map((country) =>
-                                    <MenuItem key={country.id} value={country.id}>
-                                        {country.label}
-                                    </MenuItem>
-                                )}
-                            </Select>
+                            <MuiThemeProvider theme={outerTheme}>
+                                <InputLabel>Shipping Country</InputLabel>
+                                <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
+                                    {countries.map((country) =>
+                                        <MenuItem key={country.id} value={country.id}>
+                                            {country.label}
+                                        </MenuItem>
+                                    )}
+                                </Select>
+                            </MuiThemeProvider>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Shipping Subdivision</InputLabel>
-                            <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
-                                {subdivisions.map((subdivision) =>
-                                    <MenuItem key={subdivision.id} value={subdivision.id}>
-                                        {subdivision.label}
-                                    </MenuItem>
-                                )}
-                            </Select>
+                            <MuiThemeProvider theme={outerTheme}>
+                                <InputLabel>Shipping Subdivision</InputLabel>
+                                <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
+                                    {subdivisions.map((subdivision) =>
+                                        <MenuItem key={subdivision.id} value={subdivision.id}>
+                                            {subdivision.label}
+                                        </MenuItem>
+                                    )}
+                                </Select>
+                            </MuiThemeProvider>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Shipping Options</InputLabel>
-                            <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
-                                {shippingOptions.map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` })).map((item) => (
-                                <MenuItem key={item.id} value={item.id}>
-                                    {item.label}
-                                </MenuItem>
-                                ))}
-                            </Select>
+                            <MuiThemeProvider theme={outerTheme}>
+                                <InputLabel>Shipping Options</InputLabel>
+                                <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
+                                    {shippingOptions.map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` })).map((item) => (
+                                    <MenuItem key={item.id} value={item.id}>
+                                        {item.label}
+                                    </MenuItem>
+                                    ))}
+                                </Select>
+                            </MuiThemeProvider>
                         </Grid>
                     </Grid>
                     <br />
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <Button component={Link} to='/cart' variant="outlined" >Back to Cart</Button>
-                        <Button type="submit" variant="contained" color="primary">Next</Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 15}}>
+                        <Button className={classes.back} component={Link} to='/cart' variant="outlined">Back to cart</Button>
+                        <Button className={classes.next} type="submit" variant="contained">Next</Button>
                     </div>
                 </form>
             </FormProvider>

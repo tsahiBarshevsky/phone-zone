@@ -10,6 +10,23 @@ const useStyles = makeStyles(() => (
     { 
         fontFamily: `'Nunito', sans-serif`,
         margin: '20px 0'
+    },
+    next:
+    {
+        width: 150,
+        color: 'white',
+        backgroundColor: '#0c6961',
+        textTransform: 'capitalize',
+        fontSize: 15,
+        '&:hover':
+        {
+            backgroundColor: '#0c6961E6'
+        }
+    },
+    back:
+    {
+        textTransform: 'capitalize',
+        fontSize: 15,
     }
 }));
 
@@ -69,10 +86,8 @@ const PaymentForm = ({checkoutToken, shippingData, backStep, captureCheckout, ne
                             <CardElement />
                             <br /><br />
                             <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                                <Button variant="outlined" onClick={backStep}>Back</Button>
-                                <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                                    Complete order
-                                </Button>
+                                <Button className={classes.back} variant="outlined" onClick={backStep}>Back</Button>
+                                <Button className={classes.next} type="submit" disabled={!stripe}>Complete order</Button>
                             </div>
                         </form>
                     )}

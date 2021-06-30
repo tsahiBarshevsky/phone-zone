@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline ,Paper, Stepper, Step, StepLabel, Typography, Divider, Button, CircularProgress } from '@material-ui/core';
+import { CssBaseline ,Paper, Stepper, Step, StepLabel, Typography, Divider, Button, CircularProgress, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import { commerce } from '../../../lib/commerce';
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
@@ -7,7 +7,28 @@ import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
 import Logo from '../../../assets/logo.png';
 
-const steps = ['Shipping address', 'Payment details'];
+const outerTheme = createMuiTheme({
+    typography: { fontFamily: `'Nunito', sans-serif`, fontSize: 15 },
+    overrides:
+    {
+        MuiStepIcon: 
+        {
+            root: 
+            {
+              '&$completed': { color: '#0c6961CC' },
+              '&$active': { color: '#0c6961' },
+            },
+            active: {},
+            completed: {},
+        },
+        MuiCircularProgress:
+        {
+            colorPrimary: { color: '#0c6961' }
+        }
+    }
+});
+
+const steps = ['Shipping details', 'Payment details'];
 
 const Checkout = ({cart, order, captureCheckout, error}) => 
 {
@@ -55,16 +76,21 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
     let Confirmation = () => isFinished ? (
         <>
             <Typography className={classes.typography} variant="h5" align="center">
-                Thank you for your purchase! An email with an order summary and confirmation has sent to you.
+                Thank you for your purchase! An order summary and confirmation has sent to your email.
             </Typography>
-            <img src={Logo} alt="Phone Zone" className={classes.logo} />
+            <div className={classes.logoContainer}>
+                <img src={Logo} alt="Phone Zone" className={classes.logo} />
+            </div>
             <Divider className={classes.divider} />
-            <br />
-            <Button variant="outlined" type="button" component={Link} to='/'>Back to home</Button>
+            <div className={classes.logoContainer}>
+                <Button className={classes.fillButton} component={Link} to='/'>Back to home</Button>
+            </div>
         </>
     ) : (
         <div className={classes.spinner}>
-            <CircularProgress />
+            <MuiThemeProvider theme={outerTheme}>
+                <CircularProgress />
+            </MuiThemeProvider>
         </div>
     );
 
@@ -92,13 +118,15 @@ const Checkout = ({cart, order, captureCheckout, error}) =>
             </div>
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
-                    <Stepper activeStep={activeStep} className={classes.stepper}>
-                        {steps.map((step) => (
-                            <Step key={step}>
-                                <StepLabel>{step}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
+                    <MuiThemeProvider theme={outerTheme}>
+                        <Stepper activeStep={activeStep} className={classes.stepper}>
+                            {steps.map((step) => (
+                                <Step key={step}>
+                                    <StepLabel>{step}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                    </MuiThemeProvider>
                     {activeStep === steps.length ? finishOrder = true && <Confirmation /> : checkoutToken && <Form />}
                 </Paper>
             </main>

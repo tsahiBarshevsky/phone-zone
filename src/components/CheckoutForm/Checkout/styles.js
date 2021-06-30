@@ -98,10 +98,43 @@ export default makeStyles((theme) => ({
   {
     fontFamily: `'Nunito', sans-serif`
   },
+  logoContainer:
+  {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 20
+  },
   logo:
   {
     width: 'auto',
-    height: 'auto',
-    marginTop: 20
+    height: 'auto'
+  },
+  buttonContainer:
+  {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  fillButton:
+  {
+    color: '#0c6961',
+    width: 170,
+    border: '2px solid #0c6961',
+    borderRadius: 25,
+    fontSize: 16,
+    height: 38,
+    textTransform: 'capitalize',
+    backgroundColor: 'transparent',
+    letterSpacing: 1,
+    transition: 'all 0.2s ease-out',
+    '&:hover':
+    {
+        color: 'white',
+        backgroundColor: '#0c6961',
+        transition: 'all 0.2s ease-in'
+    }
   }
 }));
