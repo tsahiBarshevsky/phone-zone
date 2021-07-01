@@ -1,0 +1,30 @@
+.container
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+    width: 30px
+    height: 100px
+    position: fixed
+    bottom: 10px
+    right: 10px
+    border: 2px solid #969696
+    border-radius: 25px
+    background-color: rgba(grey, 0.1)
+    transition: background-color 0.25s ease-in-out, transform 0.3s ease-in-out
+
+    &:hover
+        background-color: rgba(grey, 0.3)
+        transform: translateY(-5%)
+
+    .icon
+        font-size: 30px
+        margin-top: 5px
+        transform: translateX(-2.5%)
+
+    .text
+        transform: rotate(-90deg)
+        font-weight: 600
+
+    .top
+        margin: 2px 0 5px

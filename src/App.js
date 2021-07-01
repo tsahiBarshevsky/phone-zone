@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { commerce } from './lib/commerce';
-import { Homepage, Products, Accessories, Navbar, Cart, Checkout } from './components';
+import { Homepage, Products, Accessories, Navbar, Cart, Checkout, BackToTopButton } from './components';
 import './styles.sass';
 
 const App = () => 
@@ -117,6 +117,7 @@ const App = () =>
         <Router>
             <div>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
+                <BackToTopButton showBelow={100} />
                 <Switch>
                     <Route exact path="/">
                         <Homepage phones={phones} accessories={accessories} numberOfOrders={numberOfOrders} />
