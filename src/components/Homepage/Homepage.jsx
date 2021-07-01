@@ -11,43 +11,9 @@ const Homepage = ({products, numberOfOrders}) =>
 {
     const classes = useStyles();
 
-    const renderProducts = () =>
-    {
-        var randomIndexs = [];
-        while(randomIndexs.length < 3)
-        {
-            var r = Math.floor(Math.random() * products.length);
-            if (randomIndexs.indexOf(r) === -1) 
-                randomIndexs.push(r);
-        }
-        return (
-            <div>
-                <Grid container justify="center" spacing={3} style={{paddingTop: 20}}>
-                    <Grid item xs={12} sm={12} md={6} lg={6} className={classes.item}>
-                        <img src={products[randomIndexs[0]].media.source} alt={products[randomIndexs[0]].name} className="product-image" />
-                        <h1>{products[randomIndexs[0]].name}</h1>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={6} className={classes.item}>
-                        <img src={products[randomIndexs[1]].media.source} alt={products[randomIndexs[0]].name} className="product-image" />
-                        <h1>{products[randomIndexs[1]].name}</h1>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={6} className={classes.item}>
-                        <img src={products[randomIndexs[2]].media.source} alt={products[randomIndexs[0]].name} className="product-image" />
-                        <h1>{products[randomIndexs[2]].name}</h1>
-                    </Grid>
-                </Grid>
-            </div>
-        )
-    }
-
     const TestimonialItem = ({customer}) => (
         <Paper className="testimonial">
-            <Typography 
-                className={classes.opinion} 
-                align="center" 
-                variant="h5">
-                    {customer.opinion}
-            </Typography>
+            <Typography className={classes.opinion} align="center" variant="h5">{customer.opinion}</Typography>
             <div className="info">
                 <img src={customer.image} alt={customer.name} className="image" />
                 <div className="name-and-device">
@@ -73,7 +39,6 @@ const Homepage = ({products, numberOfOrders}) =>
                 <div className="wrapper">
                     <img src={About} alt="Phone Zone" className="about-image" />
                     <p className="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</p>
-                    {/* <Typography variant="h6" className={classes.typography}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</Typography> */}
                 </div>
             </div>
             <div className="statistics">
@@ -97,33 +62,14 @@ const Homepage = ({products, numberOfOrders}) =>
                     </Grid>
                 </Grid>
             </div>
-            {/* <div className="devices">
-                <Typography>Number of orders: {numberOfOrders}</Typography>
-                <Typography>Number of phones: {products.length}</Typography>
-                <Typography 
-                    style={{alignSelf: 'center'}} 
-                    className={classes.typography} 
-                    variant="h4">
-                        Some of our devices
-                </Typography>
-                {products.length > 0 && renderProducts()}
-                <Button component={Link} to='/phones' className={classes.button}>
-                    <span>See more</span>
-                </Button>
-            </div> */}
-            {/* <div className="testimonial-container">
-                <Typography 
-                    style={{alignSelf: 'center'}} 
-                    className={classes.typography} 
-                    variant="h4">
-                        Customers testimonial
-                </Typography>
+            <div className="testimonial-container">
+                <Typography className={classes.sectionTitle} variant="h3" align="center">Customers testimonial</Typography>
                 <Carousel indicators={false} timeout={700} animation="slide">
                 {
                     customersTestimonial.map((customer, i) => <TestimonialItem key={i} customer={customer} />)
                 }
                 </Carousel>
-            </div> */}
+            </div>
         </div>
     )
 }
