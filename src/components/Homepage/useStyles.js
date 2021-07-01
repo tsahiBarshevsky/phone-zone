@@ -82,16 +82,22 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: { width: '70%' },
         [theme.breakpoints.down('sm')]: { width: '100%' }
     },
+    statisticsTitle:
+    {
+        color: 'white',
+        fontFamily: `'Nunito', sans-serif`,
+        marginBottom: 20
+    },
     statisticNumber:
     {
-        color: '#0f172a',
+        color: 'white',
         fontFamily: `'Nunito', sans-serif`,
         marginBottom: -7,
         zIndex: 1
     },
     statisticCaption:
     {
-        color: '#0f172a',
+        color: 'white',
         fontFamily: `'Nunito', sans-serif`,
         fontWeight: 600,
         letterSpacing: 1,

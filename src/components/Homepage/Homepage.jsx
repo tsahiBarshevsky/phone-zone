@@ -44,7 +44,7 @@ const Homepage = ({products, numberOfOrders}) =>
                 </div>
             </div>
             <div className="statistics">
-                <Typography className={classes.sectionTitle} variant="h3" align="center">Statistics</Typography>
+                <Typography className={classes.statisticsTitle} variant="h3" align="center">Statistics</Typography>
                 <Grid container justify="center" alignContent="center" className={classes.grid}>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.statisticItem}>
                         <Typography variant="h4" className={classes.statisticNumber}>{numberOfOrders}</Typography>
