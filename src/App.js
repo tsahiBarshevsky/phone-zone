@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { commerce } from './lib/commerce';
-import { Homepage, Products, Navbar, Cart, Checkout } from './components';
+import { Homepage, Products, Accessories, Navbar, Cart, Checkout } from './components';
 import './styles.sass';
 
 const App = () => 
 {
-    const [products, setProducts] = useState([]);
+    const [phones, setPhones] = useState([]);
+    const [accessories, setAccessories] = useState([]);
     const [cart, setCart] = useState({});
     const [order, setOrder] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
@@ -32,10 +33,16 @@ const App = () =>
         .then(json => setNumberOfOrders(json.data.length));
     }
 
-    const fetchProducts = async () =>
+    const fetchPhones = async () =>
     {
-        const { data } = await commerce.products.list();
-        setProducts(data);
+        const { data } = await commerce.products.list({category_slug: ['phones']});
+        setPhones(data);
+    }
+    
+    const fetchAccessories = async () =>
+    {
+        const { data } = await commerce.products.list({category_slug: ['accessories']});
+        setAccessories(data);
     }
 
     const fetchCart = async () =>
@@ -100,7 +107,8 @@ const App = () =>
     }
 
     useEffect(() => {
-        fetchProducts();
+        fetchPhones();
+        fetchAccessories();
         fetchCart();
         fetchNumberOfOrders();
     }, []);
@@ -111,10 +119,13 @@ const App = () =>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <Switch>
                     <Route exact path="/">
-                        <Homepage products={products} numberOfOrders={numberOfOrders} />
+                        <Homepage phones={phones} accessories={accessories} numberOfOrders={numberOfOrders} />
                     </Route>
                     <Route exact path="/phones">
-                        <Products products={products} onAddToCart={addToCart} />
+                        <Products phones={phones} onAddToCart={addToCart} />
+                    </Route>
+                    <Route exact path="/accessories">
+                        <Accessories accessories={accessories} onAddToCart={addToCart} />
                     </Route>
                     <Route exact path="/cart">
                         <Cart 

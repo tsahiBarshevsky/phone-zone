@@ -9,7 +9,7 @@ import { customersTestimonial } from './Testimonials';
 import useStyles from './useStyles';
 import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 
-const Homepage = ({products, numberOfOrders}) => 
+const Homepage = ({phones, accessories, numberOfOrders}) => 
 {
     const classes = useStyles();
 
@@ -34,7 +34,7 @@ const Homepage = ({products, numberOfOrders}) =>
                 <div className="subtitle">
                     <Typography variant="h6" className={classes.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum maximus euismod. Proin semper erat a lorem egestas iaculis. Curabitur accumsan ex augue, et imperdiet ligula sollicitudin ac.</Typography>
                 </div>
-                <Button className="button" component={Link} to='/phones'>Browse phones</Button>
+                <Button className="button" component={Link} to='/accessories'>Browse phones</Button>
             </div>
             <div className="about-us">
                 <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
@@ -51,7 +51,7 @@ const Homepage = ({products, numberOfOrders}) =>
                         <Typography variant="h6" className={classes.statisticCaption}>Orders</Typography>
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.statisticItem}>
-                        <Typography variant="h4" className={classes.statisticNumber}>{products.length}</Typography>
+                        <Typography variant="h4" className={classes.statisticNumber}>{phones.length}</Typography>
                         <Typography variant="h6" className={classes.statisticCaption}>Phones</Typography>
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
@@ -59,8 +59,8 @@ const Homepage = ({products, numberOfOrders}) =>
                         <Typography variant="h6" className={classes.statisticCaption}>Brands</Typography>
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
-                        <Typography variant="h4" className={classes.statisticNumber}></Typography>
-                        <Typography variant="h6" className={classes.statisticCaption}></Typography>
+                        <Typography variant="h4" className={classes.statisticNumber}>{accessories.length}</Typography>
+                        <Typography variant="h6" className={classes.statisticCaption}>Accessories</Typography>
                     </Grid>
                 </Grid>
             </div>

@@ -3,14 +3,14 @@ import { Button, IconButton, Collapse, Grid, Typography, Slider, FormControl, Fo
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { createMuiTheme, useTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Product from './Product/Product';
 import useStyles from './styles';
+import Accessory from './Accessory/Accessory';
 
 const outerTheme = createMuiTheme({
     typography: { fontFamily: `'Nunito', sans-serif` },
     overrides:
     {
-        MuiSlider: 
+        MuiSlider:
         {
             thumb: { color: '#0c6961' },
             track: { color: '#0c6961' },
@@ -20,7 +20,7 @@ const outerTheme = createMuiTheme({
 });
 
 const useOutlinedInputStyles = makeStyles(() => ({
-    root: 
+    root:
     {
         "&:hover $notchedOutline": { borderColor: "#0c6961" },
         "&$focused $notchedOutline": { borderColor: "#0c6961" }
@@ -29,31 +29,32 @@ const useOutlinedInputStyles = makeStyles(() => ({
     notchedOutline: {}
 }));
 
-const Products = ({phones, onAddToCart}) => 
+const Products = ({accessories, onAddToCart}) =>
 {
     const [expanded, setExpanded] = useState(true);
     const [price, setPrice] = useState([0, 0]);
     const [borders, setBorders] = useState([0, 0]);
-    const [brandsFilter, setBrandsFilter] = useState([]);
-    const [yearsFilter, setYearsFilter] = useState([]);
+    const [typesFilter, setTypesFilter] = useState([]);
+    const [compatibilityFilter, setCompatibilityFilter] = useState([]);
+    // const [brandsFilter, setBrandsFilter] = useState([]);
+    // const [yearsFilter, setYearsFilter] = useState([]);
     const [priceRangeCheck, setPriceRangeCheck] = useState(false)
     const [sortType, setSortType] = useState('Highest price to lowest');
-    const [brands, setBrands] = useState({ 
-        Samsung: false,
-        Apple: false, 
-        OnePlus: false,
-        Xiaomi: false,
-        Poco: false,
-        Realme: false,
-        Google: false,
-        Oppo: false
+    const [types, setTypes] = useState({
+        Case: false
     });
-    const [years, setYears] = useState({ year2020: false, year2021: false });
-    
-    const { Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo } = brands;
-    const { year2020, year2021 } = years;
-    const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo].filter((v) => v).length > 0;
-    const yearsFilterCheck = [year2020, year2021].filter((v) => v).length > 0;
+    const [compatibilities, setCompatibilities] = useState({
+        Samsung: false
+    });
+
+    const { Case } = types;
+    // const { Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo } = brands;
+    // const { year2020, year2021 } = years;
+    const { Samsung } = compatibilities;
+    const typesFiterCheck = [Case].filter((v) => v).length > 0;
+    // const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo].filter((v) => v).length > 0;
+    const compatibilitiesFilterCheck = [Samsung].filter((v) => v).length > 0;
+    // const yearsFilterCheck = [year2020, year2021].filter((v) => v).length > 0;
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const classes = useStyles();
@@ -65,9 +66,9 @@ const Products = ({phones, onAddToCart}) =>
             var lowest = Number.POSITIVE_INFINITY;
             var highest = Number.NEGATIVE_INFINITY;
             var tmp;
-            for (var i=phones.length-1; i>=0; i--) 
+            for (var i=accessories.length-1; i>=0; i--)
             {
-                tmp = phones[i].price.raw;
+                tmp = accessories[i].price.raw;
                 if (tmp < lowest) lowest = tmp;
                 if (tmp > highest) highest = tmp;
             }
@@ -75,100 +76,100 @@ const Products = ({phones, onAddToCart}) =>
             setPrice([lowest, highest]);
         }
         getPricesRange();
-    }, [phones]);
+    }, [accessories]);
 
-    const handleSortChange = (event) => 
+    const handleSortChange = (event) =>
     {
         setSortType(event.target.value);
     }
 
-    const applyFilters = (phone) =>
+    const applyFilters = (accessory) =>
     {
         switch (true)
         {
             // #1 - TTT
-            case (priceRangeCheck && brandFilterCheck && yearsFilterCheck):
+            case (priceRangeCheck && typesFiterCheck && compatibilitiesFilterCheck):
                 return (
-                    phone.price.raw >= price[0] && 
-                    phone.price.raw <= price[1] && 
-                    brandsFilter.some(filter => phone.name.includes(filter)) &&
-                    yearsFilter.some(filter => phone.description.includes(filter)));
+                    accessory.price.raw >= price[0] &&
+                    accessory.price.raw <= price[1] &&
+                    typesFilter.some(filter => accessory.name.includes(filter)) &&
+                    compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #2 - TTF
-            case (priceRangeCheck && brandFilterCheck && !yearsFilterCheck):
+            case (priceRangeCheck && typesFiterCheck && !compatibilitiesFilterCheck):
                 return (
-                    phone.price.raw >= price[0] && 
-                    phone.price.raw <= price[1] && 
-                    brandsFilter.some(filter => phone.name.includes(filter)));
+                    accessory.price.raw >= price[0] &&
+                    accessory.price.raw <= price[1] &&
+                    typesFilter.some(filter => accessory.name.includes(filter)));
             // #3 - TFT
-            case (priceRangeCheck && !brandFilterCheck && yearsFilterCheck):
+            case (priceRangeCheck && !typesFiterCheck && compatibilitiesFilterCheck):
                 return (
-                    phone.price.raw >= price[0] && 
-                    phone.price.raw <= price[1] && 
-                    yearsFilter.some(filter => phone.description.includes(filter)));
+                    accessory.price.raw >= price[0] &&
+                    accessory.price.raw <= price[1] &&
+                    compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #4 - TFF
-            case (priceRangeCheck && !brandFilterCheck && !yearsFilterCheck):
+            case (priceRangeCheck && !typesFiterCheck && !compatibilitiesFilterCheck):
                 return (
-                    phone.price.raw >= price[0] && 
-                    phone.price.raw <= price[1]);
+                    accessory.price.raw >= price[0] &&
+                    accessory.price.raw <= price[1]);
             // #5 - FTT
-            case (!priceRangeCheck && brandFilterCheck && yearsFilterCheck):
+            case (!priceRangeCheck && typesFiterCheck && compatibilitiesFilterCheck):
                 return (
-                    brandsFilter.some(filter => phone.name.includes(filter)) &&
-                    yearsFilter.some(filter => phone.description.includes(filter)));
+                    typesFilter.some(filter => accessory.name.includes(filter)) &&
+                    compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #6 - FTF
-            case (!priceRangeCheck && brandFilterCheck && !yearsFilterCheck):
+            case (!priceRangeCheck && typesFiterCheck && !compatibilitiesFilterCheck):
                 return (
-                    brandsFilter.some(filter => phone.name.includes(filter)));
+                    typesFilter.some(filter => accessory.name.includes(filter)));
             // #7 - FFT
-            case (!priceRangeCheck && !brandFilterCheck && yearsFilterCheck):
+            case (!priceRangeCheck && !typesFiterCheck && compatibilitiesFilterCheck):
                 return (
-                    yearsFilter.some(filter => phone.description.includes(filter)));
+                    compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #8 - FFF (handle inside render)
             default: return;
         }
     }
 
-    const handleBrandChange = (event) => 
+    const handleTypeChange = (event) =>
     {
-        setBrands({ ...brands, [event.target.name]: event.target.checked });
+        setTypes({ ...types, [event.target.name]: event.target.checked });
         if (event.target.checked) // add to filters array
-            setBrandsFilter(oldFilters => [...oldFilters ,event.target.name]);
+            setTypesFilter(oldFilters => [...oldFilters ,event.target.name]);
         else // delete from filters array
         {
-            var copy = [...brandsFilter];
+            var copy = [...typesFilter];
             const index = copy.indexOf(event.target.name);
             if (index > -1)
             {
                 copy.splice(index, 1);
-                setBrandsFilter(copy);
+                setTypesFilter(copy);
             }
         }
     }
 
-    const handleYearChange = (event) =>
+    const handleCompatibilityChange = (event) =>
     {
-        setYears({ ...years, [event.target.name]: event.target.checked });
+        setCompatibilities({ ...compatibilities, [event.target.name]: event.target.checked });
         if (event.target.checked) // add to filters array
-            setYearsFilter(oldFilters => [...oldFilters ,event.target.name.replace( /^\D+/g, '')]);
+            setCompatibilityFilter(oldFilters => [...oldFilters ,event.target.name.replace( /^\D+/g, '')]);
         else // delete from filters array
         {
-            var copy = [...yearsFilter];
+            var copy = [...compatibilityFilter];
             const index = copy.indexOf(event.target.name.replace( /^\D+/g, ''));
             if (index > -1)
             {
                 copy.splice(index, 1);
-                setYearsFilter(copy);
+                setCompatibilityFilter(copy);
             }
         }
     }
 
-    const handleRangeChange = (event, newPrice) => 
+    const handleRangeChange = (event, newPrice) =>
     {
         setPrice(newPrice);
         setPriceRangeCheck(true);
     }
 
-    const sortPhones = (a, b) =>
+    const sortAccessories = (a, b) =>
     {
         switch (sortType)
         {
@@ -196,12 +197,12 @@ const Products = ({phones, onAddToCart}) =>
 
     const clearFilters = () =>
     {
-        setBrands({ ...brands, 'Samsung': false, 'Apple': false, 'OnePlus': false, 'Xiaomi': false, 'Poco': false });
-        setYears({ ...years, 'year2020': false, 'year2021': false });
+        setTypes({ ...types, 'Case': false });
+        setCompatibilities({ ...compatibilities, 'Samsung': false });
         setPrice([borders[0], borders[1]]);
         setPriceRangeCheck(false);
-        setBrandsFilter([]);
-        setYearsFilter([]);
+        setTypesFilter([]);
+        setCompatibilityFilter([]);
         setSortType('Highest price to lowest');
     }
 
@@ -209,15 +210,15 @@ const Products = ({phones, onAddToCart}) =>
         <main className={classes.main}>
             <div className={classes.toolbar} />
             <div className={classes.pageHeader}>
-                <Typography variant="h3" className={classes.headerTitle}>Our phones</Typography>
+                <Typography variant="h3" className={classes.headerTitle}>Our accessories</Typography>
             </div>
             <div className={classes.root}>
                 <div className={classes.filters}>
                     <div className={classes.header}>
                         <Typography className={classes.title} variant="h5">Phones filtering</Typography>
-                        <IconButton 
+                        <IconButton
                             className={!expanded? classes.expand : classes.expandOpen}
-                            onClick={() => setExpanded(!expanded)} 
+                            onClick={() => setExpanded(!expanded)}
                             style={matches? {visibility: 'visible'} : {visibility: 'hidden'}}>
                                 <ExpandMoreIcon />
                         </IconButton>
@@ -228,7 +229,7 @@ const Products = ({phones, onAddToCart}) =>
                             <FormControl variant="outlined" className={classes.formControl}>
                                 <Select
                                     value={sortType}
-                                    onChange={handleSortChange} 
+                                    onChange={handleSortChange}
                                     disableUnderline
                                     input={
                                         <OutlinedInput classes={outlinedInputClasses} />
@@ -247,55 +248,31 @@ const Products = ({phones, onAddToCart}) =>
                                     value={price}
                                     step={1}
                                     onChange={handleRangeChange} />
-                            </div> 
+                            </div>
                         </MuiThemeProvider>
                         <div className={classes.range}>
                             <Typography className={classes.caption} variant="caption">${price[0]}</Typography>
                             <Typography className={classes.caption} variant="caption">${price[1]}</Typography>
                         </div>
                         <div style={{marginTop: 20}} />
-                        <Typography className={classes.typography} variant="h6">Brand</Typography>
+                        <Typography className={classes.typography} variant="h6">Type</Typography>
                         <MuiThemeProvider theme={outerTheme}>
                             <FormControl component="fieldset">
                                 <FormGroup>
                                     <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Samsung} onChange={handleBrandChange} name="Samsung" />}
-                                        label="Samsung" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Apple} onChange={handleBrandChange} name="Apple" />}
-                                        label="Apple" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={OnePlus} onChange={handleBrandChange} name="OnePlus" />}
-                                        label="OnePlus" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Xiaomi} onChange={handleBrandChange} name="Xiaomi" />}
-                                        label="Xiaomi" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Poco} onChange={handleBrandChange} name="Poco" />}
-                                        label="Poco" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Realme} onChange={handleBrandChange} name="Realme" />}
-                                        label="Realme" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Google} onChange={handleBrandChange} name="Google" />}
-                                        label="Google" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={Oppo} onChange={handleBrandChange} name="Oppo" />}
-                                        label="Oppo" />
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Case} onChange={handleTypeChange} name="Case" />}
+                                        label="Case" />
                                 </FormGroup>
                             </FormControl>
                         </MuiThemeProvider>
                         <div style={{marginTop: 20}} />
-                        <Typography className={classes.typography} variant="h6">Release year</Typography>
+                        <Typography className={classes.typography} variant="h6">Compatibility</Typography>
                         <MuiThemeProvider theme={outerTheme}>
                             <FormControl component="fieldset">
                                 <FormGroup>
                                     <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={year2020} onChange={handleYearChange} name="year2020" />}
-                                        label="2020" />
-                                    <FormControlLabel
-                                        control={<Checkbox style={{color:'#0c6961'}} checked={year2021} onChange={handleYearChange} name="year2021" />}
-                                        label="2021" />
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Samsung} onChange={handleCompatibilityChange} name="Samsung" />}
+                                        label="Samsung" />
                                 </FormGroup>
                             </FormControl>
                         </MuiThemeProvider>
@@ -304,22 +281,22 @@ const Products = ({phones, onAddToCart}) =>
                     </Collapse>
                 </div>
                 <Grid container justify="center" alignItems="flex-start" spacing={4}>
-                    {brandFilterCheck || yearsFilterCheck || priceRangeCheck ?
+                    {typesFiterCheck || compatibilitiesFilterCheck || priceRangeCheck ?
                     (
-                        (phones.filter(applyFilters).length > 0 ?
-                            phones.sort(sortPhones).filter(applyFilters).map((product) => (
+                        (accessories.filter(applyFilters).length > 0 ?
+                        accessories.sort(sortAccessories).filter(applyFilters).map((product) => (
                             <Grid item key={product.id} xs={12} sm={6} md={6} lg={4} className={classes.item}>
-                                <Product product={product} onAddToCart={onAddToCart} />
+                                <Accessory product={product} onAddToCart={onAddToCart} />
                             </Grid>
                             ))
                         :
-                        <h1>No phones found</h1>
+                        <h1>No accessories found</h1>
                         )
                     )
                     :
-                    phones.sort(sortPhones).map((product) => (
+                    accessories.sort(sortAccessories).map((product) => (
                         <Grid item key={product.id} xs={12} sm={6} md={6} lg={4} className={classes.item}>
-                            <Product product={product} onAddToCart={onAddToCart} />
+                            <Accessory product={product} onAddToCart={onAddToCart} />
                         </Grid>
                     ))}
                 </Grid>
