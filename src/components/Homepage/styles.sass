@@ -87,24 +87,38 @@ $lg: 1920px
         justify-content: center
         align-items: center
         padding: 40px 20px
+        margin-bottom: 10px
         overflow-x: hidden
-        background-color: rgba(lightskyblue, 0.5)
 
         .wrapper
             display: flex
             justify-content: space-between
             align-items: center
-            //width: 50%
+            width: 800px
 
-            @media screen and ( max-width: $xs )
+            @media screen and ( max-width: 875px )
                 flex-direction: column
+                width: 100%
+                justify-content: center
+                padding: 0 20px
 
             .about-image
-                width: 400px
+                width: 350px
                 height: auto
+                margin-right: 50px
+
+                @media screen and ( max-width: 875px )
+                    margin-bottom: 20px
+                    margin-right: 0
 
                 @media screen and ( max-width: $xs )
                     width: 100%
+
+            .about-text
+                font-size: 20px
+
+                @media screen and ( max-width: 875px )
+                    text-align: center
 
     .statistics
         display: flex

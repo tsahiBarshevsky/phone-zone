@@ -93,6 +93,16 @@ export default makeStyles((theme) => ({
     {
         color: '#0f172a',
         fontFamily: `'Nunito', sans-serif`,
+        fontWeight: 600,
+        letterSpacing: 1,
         zIndex: 1
+    },
+    statisticItem:
+    {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        [theme.breakpoints.down('xs')]: { marginBottom: 25 }
     }
 }));

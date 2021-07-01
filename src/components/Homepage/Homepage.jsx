@@ -5,6 +5,7 @@ import { customersTestimonial } from './Items';
 import { Link } from 'react-router-dom';
 import './styles.sass';
 import useStyles from './useStyles';
+import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 
 const Homepage = ({products, numberOfOrders}) => 
 {
@@ -67,21 +68,22 @@ const Homepage = ({products, numberOfOrders}) =>
                 </div>
                 <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
-            {/* <div className="about-us">
+            <div className="about-us">
                 <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
                 <div className="wrapper">
-                <img src={About} alt="Phone Zone" className="about-image" />
-                <Typography variant="h6" className={classes.typography}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</Typography>
+                    <img src={About} alt="Phone Zone" className="about-image" />
+                    <p className="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</p>
+                    {/* <Typography variant="h6" className={classes.typography}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</Typography> */}
                 </div>
-            </div> */}
+            </div>
             <div className="statistics">
                 <Typography className={classes.sectionTitle} variant="h3" align="center">Statistics</Typography>
                 <Grid container justify="center" alignContent="center" className={classes.grid}>
-                    <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
+                    <Grid item xs={6} sm={3} md={3} lg={3} className={classes.statisticItem}>
                         <Typography variant="h4" className={classes.statisticNumber}>{numberOfOrders}</Typography>
                         <Typography variant="h6" className={classes.statisticCaption}>Orders</Typography>
                     </Grid>
-                    <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
+                    <Grid item xs={6} sm={3} md={3} lg={3} className={classes.statisticItem}>
                         <Typography variant="h4" className={classes.statisticNumber}>{products.length}</Typography>
                         <Typography variant="h6" className={classes.statisticCaption}>Phones</Typography>
                     </Grid>
