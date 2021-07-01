@@ -1,9 +1,11 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Typography ,Paper, Grid, Button } from '@material-ui/core';
-import { customersTestimonial } from './Items';
+import { Typography ,Paper, Grid, Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Emoji from "react-emoji-render";
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import './styles.sass';
+import { customersTestimonial } from './Testimonials';
 import useStyles from './useStyles';
 import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 
@@ -70,6 +72,26 @@ const Homepage = ({products, numberOfOrders}) =>
                 }
                 </Carousel>
             </div>
+            <footer>
+                <Typography variant="body1" paragraph gutterBottom className={classes.footerContent}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras libero arcu, blandit eu justo non, ullamcorper suscipit velit. Praesent urna mi, fringilla in varius nec, tempor et lectus. Quisque iaculis faucibus nisl sit amet lobortis. Phasellus sed urna sollicitudin, vulputate lectus tristique, vestibulum dui. Donec blandit auctor massa ac feugiat. Etiam sit amet pulvinar lacus. Duis vel venenatis ex, et vulputate orci. Duis a ultrices lectus. Donec non ornare lacus, non pulvinar sapien. Cras finibus cursus turpis, eu faucibus augue auctor sed. Pellentesque vel rhoncus arcu. Duis at purus felis. In lobortis molestie tristique. Ut luctus dignissim mi, et facilisis enim pulvinar id. Aenean sit amet ipsum ut neque faucibus cursus. Nam vitae magna pellentesque, facilisis lectus vitae, luctus erat.
+                </Typography>
+                <Divider className={classes.divider} />
+                <div className="wrapper">
+                    <div className="content">
+                        <Typography variant="subtitle1" className={classes.footerContent}>
+                            Copyright &copy; {new Date().getFullYear() === 2021 ? 2021 : `2021 - ${new Date().getFullYear()}`} All Rights Reserved
+                        </Typography>
+                        <Typography variant="subtitle1" align="center" className={classes.footerContent}>
+                            Coded with <Emoji text=":heart:" /> by Tsahi Barshavsky
+                        </Typography>
+                    </div>
+                    <div className="contact">
+                        <a href="https://www.linkedin.com/in/tsahi-barshavsky-frontend-developer/" target="_blank" rel="noreferrer" className="linkedin"><FaLinkedinIn /></a>
+                        <a href="https://github.com/tsahiBarshevsky" target="_blank" rel="noreferrer" className="github"><FaGithub /></a>
+                    </div>
+                </div>
+            </footer>
         </div>
     )
 }

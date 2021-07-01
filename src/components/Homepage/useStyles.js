@@ -104,5 +104,21 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         [theme.breakpoints.down('xs')]: { marginBottom: 25 }
+    },
+    divider:
+    {
+        width: '100%',
+        backgroundColor: '#ffffff33',
+        marginBlock: 20
+    },
+    footerContent:
+    {
+        color: 'white',
+        fontFamily: `'Nunito', sans-serif`,
+        marginBottom: -8,
+        '@media (max-width: 500px)':
+        {
+            textAlign: 'center'
+        }
     }
 }));
