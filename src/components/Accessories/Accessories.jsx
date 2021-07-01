@@ -123,7 +123,6 @@ const Products = ({accessories, onAddToCart}) =>
                     typesFilter.some(filter => accessory.name.includes(filter)));
             // #7 - FFT
             case (!priceRangeCheck && !typesFiterCheck && compatibilitiesFilterCheck):
-                console.log('in');
                 return (
                     compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #8 - FFF (handle inside render)
@@ -232,7 +231,6 @@ const Products = ({accessories, onAddToCart}) =>
                                 <Select
                                     value={sortType}
                                     onChange={handleSortChange}
-                                    disableUnderline
                                     input={
                                         <OutlinedInput classes={outlinedInputClasses} />
                                     }>

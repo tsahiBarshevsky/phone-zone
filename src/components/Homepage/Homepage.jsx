@@ -34,7 +34,7 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 <div className="subtitle">
                     <Typography variant="h6" className={classes.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum maximus euismod. Proin semper erat a lorem egestas iaculis. Curabitur accumsan ex augue, et imperdiet ligula sollicitudin ac.</Typography>
                 </div>
-                <Button className="button" component={Link} to='/accessories'>Browse phones</Button>
+                <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
             <div className="about-us">
                 <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>

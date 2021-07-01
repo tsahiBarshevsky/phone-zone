@@ -229,7 +229,6 @@ const Products = ({phones, onAddToCart}) =>
                                 <Select
                                     value={sortType}
                                     onChange={handleSortChange} 
-                                    disableUnderline
                                     input={
                                         <OutlinedInput classes={outlinedInputClasses} />
                                     }>

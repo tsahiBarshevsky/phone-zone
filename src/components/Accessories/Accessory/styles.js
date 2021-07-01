@@ -4,7 +4,6 @@ export default makeStyles((theme) => ({
     root:
     {
       width: 350,
-      minHeight: 422,
       borderRadius: 10,
       cursor: 'default',
       [theme.breakpoints.down('xs')]:
@@ -25,7 +24,11 @@ export default makeStyles((theme) => ({
       justifyContent: 'flex-end',
       paddingTop: 0
     },
-    cardContent: 
+    cardContent:
+    {
+      minHeight: 155,
+    },
+    content: 
     {
       display: 'flex',
       justifyContent: 'space-between',

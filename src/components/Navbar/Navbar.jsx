@@ -42,7 +42,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                     {/* <div className={classes.grow} /> */}
                     <div className={classes.links}>
                         <Link to="/phones" className={classes.link}>Smartphones</Link>
-                        <Link to="/" className={classes.link}>Accessoriess</Link>
+                        <Link to="/accessories" className={classes.link}>Accessoriess</Link>
                     </div>
                     {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                     <div>
