@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
     root:
     {
       width: 350,
+      minHeight: 422,
       borderRadius: 10,
       cursor: 'default',
       [theme.breakpoints.down('xs')]:

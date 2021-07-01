@@ -78,7 +78,8 @@ export default makeStyles((theme) => ({
   title:
   {
     fontFamily: `'Nunito', sans-serif`,
-    marginBottom: 10
+    marginBottom: 10,
+    lineHeight: 1
   },
   priceSlider:
   {

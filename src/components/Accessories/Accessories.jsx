@@ -36,25 +36,26 @@ const Products = ({accessories, onAddToCart}) =>
     const [borders, setBorders] = useState([0, 0]);
     const [typesFilter, setTypesFilter] = useState([]);
     const [compatibilityFilter, setCompatibilityFilter] = useState([]);
-    // const [brandsFilter, setBrandsFilter] = useState([]);
-    // const [yearsFilter, setYearsFilter] = useState([]);
     const [priceRangeCheck, setPriceRangeCheck] = useState(false)
     const [sortType, setSortType] = useState('Highest price to lowest');
     const [types, setTypes] = useState({
-        Case: false
+        Case: false,
+        Charger: false,
+        Cable: false
     });
     const [compatibilities, setCompatibilities] = useState({
-        Samsung: false
+        Samsung: false,
+        Apple: false,
+        OnePlus: false,
+        Xiaomi: false,
+        Poco: false,
+        Realme: false
     });
 
-    const { Case } = types;
-    // const { Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo } = brands;
-    // const { year2020, year2021 } = years;
-    const { Samsung } = compatibilities;
-    const typesFiterCheck = [Case].filter((v) => v).length > 0;
-    // const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo].filter((v) => v).length > 0;
-    const compatibilitiesFilterCheck = [Samsung].filter((v) => v).length > 0;
-    // const yearsFilterCheck = [year2020, year2021].filter((v) => v).length > 0;
+    const { Case, Charger, Cable } = types;
+    const { Samsung, Apple, OnePlus, Xiaomi, Poco, Realme } = compatibilities;
+    const typesFiterCheck = [Case, Charger, Cable].filter((v) => v).length > 0;
+    const compatibilitiesFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, Realme].filter((v) => v).length > 0;
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const classes = useStyles();
@@ -122,6 +123,7 @@ const Products = ({accessories, onAddToCart}) =>
                     typesFilter.some(filter => accessory.name.includes(filter)));
             // #7 - FFT
             case (!priceRangeCheck && !typesFiterCheck && compatibilitiesFilterCheck):
+                console.log('in');
                 return (
                     compatibilityFilter.some(filter => accessory.description.includes(filter)));
             // #8 - FFF (handle inside render)
@@ -150,11 +152,11 @@ const Products = ({accessories, onAddToCart}) =>
     {
         setCompatibilities({ ...compatibilities, [event.target.name]: event.target.checked });
         if (event.target.checked) // add to filters array
-            setCompatibilityFilter(oldFilters => [...oldFilters ,event.target.name.replace( /^\D+/g, '')]);
+            setCompatibilityFilter(oldFilters => [...oldFilters ,event.target.name]);
         else // delete from filters array
         {
             var copy = [...compatibilityFilter];
-            const index = copy.indexOf(event.target.name.replace( /^\D+/g, ''));
+            const index = copy.indexOf(event.target.name);
             if (index > -1)
             {
                 copy.splice(index, 1);
@@ -197,8 +199,8 @@ const Products = ({accessories, onAddToCart}) =>
 
     const clearFilters = () =>
     {
-        setTypes({ ...types, 'Case': false });
-        setCompatibilities({ ...compatibilities, 'Samsung': false });
+        setTypes({ ...types, 'Case': false, 'Charger': false });
+        setCompatibilities({ ...compatibilities, 'Samsung': false, 'Apple': false });
         setPrice([borders[0], borders[1]]);
         setPriceRangeCheck(false);
         setTypesFilter([]);
@@ -215,7 +217,7 @@ const Products = ({accessories, onAddToCart}) =>
             <div className={classes.root}>
                 <div className={classes.filters}>
                     <div className={classes.header}>
-                        <Typography className={classes.title} variant="h5">Phones filtering</Typography>
+                        <Typography className={classes.title} variant="h5">Accessories filtering</Typography>
                         <IconButton
                             className={!expanded? classes.expand : classes.expandOpen}
                             onClick={() => setExpanded(!expanded)}
@@ -262,6 +264,12 @@ const Products = ({accessories, onAddToCart}) =>
                                     <FormControlLabel
                                         control={<Checkbox style={{color:'#0c6961'}} checked={Case} onChange={handleTypeChange} name="Case" />}
                                         label="Case" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Charger} onChange={handleTypeChange} name="Charger" />}
+                                        label="Charger" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Cable} onChange={handleTypeChange} name="Cable" />}
+                                        label="Cable" />
                                 </FormGroup>
                             </FormControl>
                         </MuiThemeProvider>
@@ -273,6 +281,21 @@ const Products = ({accessories, onAddToCart}) =>
                                     <FormControlLabel
                                         control={<Checkbox style={{color:'#0c6961'}} checked={Samsung} onChange={handleCompatibilityChange} name="Samsung" />}
                                         label="Samsung" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Apple} onChange={handleCompatibilityChange} name="Apple" />}
+                                        label="Apple" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={OnePlus} onChange={handleCompatibilityChange} name="OnePlus" />}
+                                        label="OnePlus" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Xiaomi} onChange={handleCompatibilityChange} name="Xiaomi" />}
+                                        label="Xiaomi" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Poco} onChange={handleCompatibilityChange} name="Poco" />}
+                                        label="Poco" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Realme} onChange={handleCompatibilityChange} name="Realme" />}
+                                        label="Realme" />
                                 </FormGroup>
                             </FormControl>
                         </MuiThemeProvider>
