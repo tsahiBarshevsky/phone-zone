@@ -55,12 +55,12 @@ const Homepage = ({products, numberOfOrders}) =>
                         <Typography variant="h6" className={classes.statisticCaption}>Phones</Typography>
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
-                        <Typography variant="h4" className={classes.statisticNumber}>5</Typography>
+                        <Typography variant="h4" className={classes.statisticNumber}>8</Typography>
                         <Typography variant="h6" className={classes.statisticCaption}>Brands</Typography>
                     </Grid>
                     <Grid item xs={6} sm={3} md={3} lg={3} className={classes.item}>
-                        <Typography variant="h4" className={classes.statisticNumber}>5</Typography>
-                        <Typography variant="h6" className={classes.statisticCaption}>Brands</Typography>
+                        <Typography variant="h4" className={classes.statisticNumber}></Typography>
+                        <Typography variant="h6" className={classes.statisticCaption}></Typography>
                     </Grid>
                 </Grid>
             </div>

@@ -43,13 +43,16 @@ const Products = ({products, onAddToCart}) =>
         Apple: false, 
         OnePlus: false,
         Xiaomi: false,
-        Poco: false 
+        Poco: false,
+        Realme: false,
+        Google: false,
+        Oppo: false
     });
     const [years, setYears] = useState({ year2020: false, year2021: false });
     
-    const { Samsung, Apple, OnePlus, Xiaomi, Poco } = brands;
+    const { Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo } = brands;
     const { year2020, year2021 } = years;
-    const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco].filter((v) => v).length > 0;
+    const brandFilterCheck = [Samsung, Apple, OnePlus, Xiaomi, Poco, Realme, Google, Oppo].filter((v) => v).length > 0;
     const yearsFilterCheck = [year2020, year2021].filter((v) => v).length > 0;
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -269,6 +272,15 @@ const Products = ({products, onAddToCart}) =>
                                     <FormControlLabel
                                         control={<Checkbox style={{color:'#0c6961'}} checked={Poco} onChange={handleBrandChange} name="Poco" />}
                                         label="Poco" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Realme} onChange={handleBrandChange} name="Realme" />}
+                                        label="Realme" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Google} onChange={handleBrandChange} name="Google" />}
+                                        label="Google" />
+                                    <FormControlLabel
+                                        control={<Checkbox style={{color:'#0c6961'}} checked={Oppo} onChange={handleBrandChange} name="Oppo" />}
+                                        label="Oppo" />
                                 </FormGroup>
                             </FormControl>
                         </MuiThemeProvider>

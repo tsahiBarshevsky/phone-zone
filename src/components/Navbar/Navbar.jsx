@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Badge, Typography, Button, Divider, SwipeableDrawer, Tooltip } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Badge, Typography, Button, Divider, SwipeableDrawer, Tooltip, Collapse } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { animateScroll } from 'react-scroll';
@@ -7,10 +7,12 @@ import { FiShoppingCart } from 'react-icons/fi';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 import logo from '../../assets/logo.png';
+import MenuToggle from './MenuToggle';
 
 const Navbar = ({cart, updateCartQuantity, removeFromCart}) => 
 {
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [expanded, setExpanded] = useState(false);
     const classes = useStyles();
     const location = useLocation();
 
@@ -35,9 +37,13 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <img onClick={toggleHome} src={logo} alt="Phone Zone" height="50px" className={classes.image} />
-                    <div className={classes.grow} />
+                    {/* <div className={classes.grow} /> */}
+                    <div className={classes.links}>
+                        <Link to="/phones" className={classes.link}>Smartphones</Link>
+                        <Link to="/" className={classes.link}>Accessoriess</Link>
+                    </div>
                     {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                     <div>
                         <Tooltip title="Shopping bag" placement="left" enterNextDelay={1000}>
@@ -49,8 +55,12 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                                 </IconButton>
                             </span>
                         </Tooltip>
-                    </div> )}
+                        <MenuToggle expanded={expanded} setExpanded={setExpanded} />
+                    </div>)}
                 </Toolbar>
+                <Collapse in={expanded} timeout={500} unmountOnExit>
+                    Hey this is collapse
+                </Collapse>
             </AppBar>
             <SwipeableDrawer 
                 anchor="right" 

@@ -12,6 +12,33 @@ export default makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  toolbar:
+  {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  links:
+  {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 240,
+    [theme.breakpoints.down('xs')]:
+    {
+      display: 'none'
+    }
+  },
+  link:
+  {
+    fontSize: 18,
+    color: 'black',
+    textDecoration: 'none',
+    transition: 'color 0.25s ease-in-out, transform 0.3s ease-in-out',
+    '&:hover': 
+    { 
+      color: '#0c6961',
+      transform: 'scale(1.2)'
+    }
+  },
   grow: {
     flexGrow: 1,
   },
