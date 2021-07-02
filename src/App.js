@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { commerce } from './lib/commerce';
 import { Homepage, Products, Accessories, Navbar, Cart, Checkout, BackToTopButton, ScrollToTop } from './components';
 import './styles.sass';
@@ -115,6 +117,7 @@ const App = () =>
 
     return (
         <Router>
+            {phones.length > 0 && accessories.length > 0 ?
             <div>
                 <Navbar cart={cart} updateCartQuantity={updateCartQuantity} removeFromCart={removeFromCart} />
                 <BackToTopButton showBelow={100} />
@@ -145,6 +148,16 @@ const App = () =>
                     </Route>
                 </Switch>
             </div>
+            :
+            <div className="loading-animation">
+                <Loader
+                    type="BallTriangle"
+                    color="#0c6961"
+                    height={100}
+                    width={100}
+                />
+                <h3>Loading...</h3>
+            </div>}
             <ToastContainer
                 position="bottom-center"
                 closeOnClick

@@ -311,7 +311,7 @@ const Products = ({accessories, onAddToCart}) =>
                             </Grid>
                             ))
                         :
-                        <h1>No accessories found</h1>
+                        <Typography variant="h4">No accessory found based on your search</Typography>
                         )
                     )
                     :

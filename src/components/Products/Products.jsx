@@ -312,7 +312,7 @@ const Products = ({phones, onAddToCart}) =>
                             </Grid>
                             ))
                         :
-                        <h1>No phones found</h1>
+                        <Typography variant="h4">No phone found based on your search</Typography>
                         )
                     )
                     :
