@@ -38,13 +38,29 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
             <div className="about-us">
-                <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
+                {/* <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
                 <div className="wrapper">
                     <img src={About} alt="Phone Zone" className="about-image" />
                     <div className="paragraph">
                         {about.split('\n').map((paragraph, index) => (
                             <p key={index} className="about-text">{paragraph}</p>
                         ))}
+                    </div>
+                </div> */}
+                <div className="categories">
+                    <div className="category-box">
+                        <img src="https://images.pexels.com/photos/3973973/pexels-photo-3973973.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="fafa" />
+                        <div className="category-button">
+                            <Typography style={{color: 'white'}}>Smartphones</Typography>
+                            <Button variant="contained" color="primary">See all</Button>
+                        </div>
+                    </div>
+                    <div className="category-box">
+                        <img src="https://images.pexels.com/photos/1841841/pexels-photo-1841841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="fafa" />
+                        <div className="category-button">
+                            <Typography style={{color: 'white'}}>Accessories</Typography>
+                            <Button variant="contained" color="primary">See all</Button>
+                        </div>
                     </div>
                 </div>
             </div>
