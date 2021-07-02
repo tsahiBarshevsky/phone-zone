@@ -7,6 +7,7 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     cursor: 'default',
+    minHeight: '100vh'
   },
   pageHeader:
   {
@@ -146,6 +147,13 @@ export default makeStyles((theme) => ({
       color: 'white',
       backgroundColor: '#0c6961',
       transition: 'all 0.2s ease-in'
+    }
+  },
+  noResult:
+  {
+    [theme.breakpoints.down('sm')]:
+    {
+      marginTop: 15
     }
   }
 }));

@@ -60,24 +60,20 @@ const AddressForm = ({checkoutToken, next}) =>
     const fetchShippingOptions = async (checkoutTokenId, country, stateProvince = null) => 
     {
         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region: stateProvince });
-        console.log(options);
         setShippingOptions(options);
         setShippingOption(options[0].id);
     };
 
     useEffect(() => {
-        console.log('useEffect1');
         fetchShippingCountries(checkoutToken.id);
     }, [checkoutToken.id]);
 
     useEffect(() => {
-        console.log('useEffect2');
         if (shippingCountry)
             fetchSubdivisions(shippingCountry);
     }, [shippingCountry]);
 
     useEffect(() => {
-        console.log('useEffect3');
         if (shippingSubdivision) 
             fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
     }, [shippingSubdivision, checkoutToken.id, shippingCountry]);

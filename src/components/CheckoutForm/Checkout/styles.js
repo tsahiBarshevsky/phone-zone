@@ -8,11 +8,16 @@ export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   root:
   {
-    cursor: 'default'
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    cursor: 'default',
+    minHeight: '100vh',
+    paddingBottom: '5%'
   },
   layout:
   {
-    marginTop: '5%',
+    // marginTop: '5%',
+    marginBottom: '-5%',
     width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),

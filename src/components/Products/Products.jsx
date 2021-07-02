@@ -196,7 +196,9 @@ const Products = ({phones, onAddToCart}) =>
 
     const clearFilters = () =>
     {
-        setBrands({ ...brands, 'Samsung': false, 'Apple': false, 'OnePlus': false, 'Xiaomi': false, 'Poco': false });
+        setBrands({ ...brands, 
+            'Samsung': false, 'Apple': false, 'OnePlus': false, 'Xiaomi': false, 
+            'Poco': false, 'Realme': false, 'Google': false, 'Oppo': false });
         setYears({ ...years, 'year2020': false, 'year2021': false });
         setPrice([borders[0], borders[1]]);
         setPriceRangeCheck(false);
@@ -312,7 +314,7 @@ const Products = ({phones, onAddToCart}) =>
                             </Grid>
                             ))
                         :
-                        <Typography variant="h4">No phone found based on your search</Typography>
+                        <Typography className={classes.noResult} variant="h4">No phone found based on your search</Typography>
                         )
                     )
                     :

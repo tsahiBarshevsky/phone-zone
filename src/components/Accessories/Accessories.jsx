@@ -198,8 +198,8 @@ const Products = ({accessories, onAddToCart}) =>
 
     const clearFilters = () =>
     {
-        setTypes({ ...types, 'Case': false, 'Charger': false });
-        setCompatibilities({ ...compatibilities, 'Samsung': false, 'Apple': false });
+        setTypes({ ...types, 'Case': false, 'Charger': false, 'Cable': false });
+        setCompatibilities({ ...compatibilities, 'Samsung': false, 'Apple': false, 'OnePlus': false, 'Xiaomi': false, 'Poco': false, 'Realme': false });
         setPrice([borders[0], borders[1]]);
         setPriceRangeCheck(false);
         setTypesFilter([]);
@@ -311,7 +311,7 @@ const Products = ({accessories, onAddToCart}) =>
                             </Grid>
                             ))
                         :
-                        <Typography variant="h4">No accessory found based on your search</Typography>
+                        <Typography className={classes.noResult} variant="h4">No accessory found based on your search</Typography>
                         )
                     )
                     :

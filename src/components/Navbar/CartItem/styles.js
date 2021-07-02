@@ -17,7 +17,7 @@ export default makeStyles(() => ({
         minWidth: 100,
         height: 100,
         marginRight: 20,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     info:
     {
