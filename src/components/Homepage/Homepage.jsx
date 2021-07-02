@@ -4,10 +4,11 @@ import { Typography ,Paper, Grid, Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Emoji from "react-emoji-render";
 import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
-import './styles.sass';
 import { customersTestimonial } from './Testimonials';
+import { subtitle, about } from './Texts';
 import useStyles from './useStyles';
 import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
+import './styles.sass';
 
 const Homepage = ({phones, accessories, numberOfOrders}) => 
 {
@@ -32,7 +33,7 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
             <div className="hero">
                 <Typography variant='h3' className={classes.title}>don't stay far behind everyone with an old smartphone, buy a </Typography>
                 <div className="subtitle">
-                    <Typography variant="h6" className={classes.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum maximus euismod. Proin semper erat a lorem egestas iaculis. Curabitur accumsan ex augue, et imperdiet ligula sollicitudin ac.</Typography>
+                    <Typography variant="h6" className={classes.subtitle}>{subtitle}</Typography>
                 </div>
                 <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
@@ -40,7 +41,11 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
                 <div className="wrapper">
                     <img src={About} alt="Phone Zone" className="about-image" />
-                    <p className="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere pulvinar nisl eu tristique. Mauris consequat nulla non nibh convallis rutrum et non risus. Cras tortor dolor, convallis vehicula lectus ut, vehicula molestie mi. Duis urna erat, lobortis ut massa quis, pellentesque ultrices enim. In bibendum hendrerit aliquam. Proin placerat eget velit eget ornare. Vestibulum at imperdiet est. Phasellus est odio, fringilla ac nulla ultrices, dignissim molestie arcu. Vestibulum non ultrices metus. Pellentesque vel dui diam. Suspendisse justo lacus, rhoncus sed iaculis eu, fermentum eget massa.</p>
+                    <div className="paragraph">
+                        {about.split('\n').map((paragraph, index) => (
+                            <p key={index} className="about-text">{paragraph}</p>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="statistics">
