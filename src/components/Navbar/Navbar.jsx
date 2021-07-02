@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { animateScroll } from 'react-scroll';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 import logo from '../../assets/logo.png';
@@ -15,6 +17,8 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
     const [expanded, setExpanded] = useState(false);
     const classes = useStyles();
     const location = useLocation();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('xs'));
 
     const handleOpen = () => 
     {
@@ -40,12 +44,13 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                 <Toolbar className={classes.toolbar}>
                     <img onClick={toggleHome} src={logo} alt="Phone Zone" height="50px" className={classes.image} />
                     {/* <div className={classes.grow} /> */}
+                    {!matches &&
                     <div className={classes.links}>
                         <Link to="/phones" className={classes.link}>Smartphones</Link>
                         <Link to="/accessories" className={classes.link}>Accessoriess</Link>
-                    </div>
-                    {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
-                    <div>
+                    </div>}
+                    <div style={(location.pathname === '/cart' || location.pathname === '/checkout') && !matches ? {display: 'none'} : {}}>
+                        {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
                         <Tooltip title="Shopping bag" placement="left" enterNextDelay={1000}>
                             <span>
                                 <IconButton onClick={handleOpen} aria-label="Show card items" color="inherit">
@@ -54,12 +59,27 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                                     </Badge>
                                 </IconButton>
                             </span>
-                        </Tooltip>
-                        <MenuToggle expanded={expanded} setExpanded={setExpanded} />
-                    </div>)}
+                        </Tooltip>)}
+                        {matches && <MenuToggle expanded={expanded} setExpanded={setExpanded} />}
+                    </div>
                 </Toolbar>
                 <Collapse in={expanded} timeout={500} unmountOnExit>
-                    Hey this is collapse
+                    <div className={classes.mobileMenu}>
+                        <ul className={classes.list}>
+                            <li className={classes.listItem}>
+                                <Link className={classes.navLink} to='/' onClick={() => setExpanded(false)}>Home</Link>
+                            </li>
+                            <li className={classes.listItem}>
+                                <Link className={classes.navLink} to='/phones' onClick={() => setExpanded(false)}>Smartphones</Link>
+                            </li>
+                            <li className={classes.listItem}>
+                                <Link className={classes.navLink} to='/accessories' onClick={() => setExpanded(false)}>Accessories</Link>
+                            </li>
+                            <li className={classes.listItem}>
+                                <Link className={classes.navLink} to='/cart' onClick={() => setExpanded(false)}>Cart</Link>
+                            </li>
+                        </ul>
+                    </div>
                 </Collapse>
             </AppBar>
             <SwipeableDrawer 

@@ -5,12 +5,12 @@ import { IconButton, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     menuButton:
     {
-        display: 'none',
+        // display: 'none',
         transform: 'translate(0, 3%)',
-        [theme.breakpoints.down('xs')]:
-        {
-            display: 'inline'
-        },
+        // [theme.breakpoints.down('xs')]:
+        // {
+        //     display: 'inline'
+        // },
         '&:hover': { backgroundColor: 'transparent '},
     },
 }));

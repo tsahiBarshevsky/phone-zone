@@ -128,5 +128,24 @@ export default makeStyles((theme) => ({
       backgroundColor: '#0c6961',
       transition: 'all 0.2s ease-in'
     }
+  },
+  mobileMenu:
+  {
+    paddingInline: 22,
+    paddingBlock: 10
+  },
+  list:
+  {
+    listStyle: 'none'
+  },
+  listItem:
+  {
+    marginBlock: 5
+  },
+  navLink:
+  {
+    color: 'black',
+    textDecoration: 'none',
+    fontSize: 19
   }
 }));
