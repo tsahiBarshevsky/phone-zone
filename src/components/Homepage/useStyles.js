@@ -132,5 +132,26 @@ export default makeStyles((theme) => ({
         {
             textAlign: 'center'
         }
+    },
+    service:
+    {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    serviceTitle:
+    {
+        fontFamily: `'Nunito', sans-serif`,
+        textTransform: 'capitalize',
+        textAlign: 'center',
+        marginBottom: 20
+    },
+    serviceText:
+    {
+        fontFamily: `'Nunito', sans-serif`,
+        textAlign: 'center',
+        lineHeight: 1.3,
+        width: '70%'
     }
 }));

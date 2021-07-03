@@ -3,9 +3,10 @@ import Carousel from 'react-material-ui-carousel';
 import { Typography ,Paper, Grid, Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Emoji from "react-emoji-render";
-import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import { FaLinkedinIn, FaGithub, FaShippingFast, FaHandshake } from 'react-icons/fa';
+import { GoCreditCard } from 'react-icons/go';
 import { customersTestimonial } from './Testimonials';
-import { subtitle, about } from './Texts';
+import { subtitle, about, service1, service2, service3 } from './Texts';
 import useStyles from './useStyles';
 // import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 import './styles.sass';
@@ -47,15 +48,6 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                         ))}
                     </div>
                 </div>
-                {/* <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
-                <div className="wrapper">
-                    <img src={About} alt="Phone Zone" className="about-image" />
-                    <div className="paragraph">
-                        {about.split('\n').map((paragraph, index) => (
-                            <p key={index} className="about-text">{paragraph}</p>
-                        ))}
-                    </div>
-                </div> */}
                 <div className="categories">
                     <div className="category-box">
                         <img src="https://images.pexels.com/photos/3973973/pexels-photo-3973973.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="fafa" />
@@ -71,6 +63,31 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                             <Button variant="contained" color="primary" component={Link} to='/accessories'>See all</Button>
                         </div>
                     </div>
+                </div>
+                <div className="services">
+                    <Grid container spacing={3} justify="center" alignItems="flex-start">
+                        <Grid item xs={12} sm={6} md={4} lg={4} className={classes.service}>
+                            <div className="icon-wrapper">
+                                <FaShippingFast className="icon" />
+                            </div>
+                            <Typography className={classes.serviceTitle} variant="h5">Fast & cheap shipping</Typography>
+                            <Typography className={classes.serviceText} variant="subtitle1">{service1}</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4} lg={4} className={classes.service}>
+                            <div className="icon-wrapper">
+                                <GoCreditCard className="icon" />
+                            </div>
+                            <Typography className={classes.serviceTitle} variant="h5">Secure payment</Typography>
+                            <Typography className={classes.serviceText} variant="subtitle1">{service2}</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} lg={4} className={classes.service}>
+                            <div className="icon-wrapper">
+                                <FaHandshake className="icon" />
+                            </div>
+                            <Typography className={classes.serviceTitle} variant="h5">Full warranty</Typography>
+                            <Typography className={classes.serviceText} variant="subtitle1">{service3}</Typography>
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
             <div className="statistics">
