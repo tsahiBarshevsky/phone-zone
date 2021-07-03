@@ -241,7 +241,8 @@ $lg: 1920px
                 display: flex
                 justify-content: space-between
                 align-items: center
-                width: 255px
+                width: fit-content
+                padding-inline: 20px
 
                 .image
                     width: 80px
@@ -249,6 +250,7 @@ $lg: 1920px
                     border-radius: 50%
                     object-fit: cover
                     object-position: center center
+                    margin-right: 20px
 
                 .name-and-device
                     display: flex
@@ -261,10 +263,13 @@ $lg: 1920px
         border-top: 1px solid black
         width: 100%
         height: fit-content
-        padding: 20px 60px
+        padding: 30px 150px
+
+        @media screen and ( max-width: 700px )
+            padding: 30px 60px
 
         @media screen and ( max-width: $xs )
-            padding: 20px
+            padding: 30px
 
         .wrapper
             display: flex

@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import Emoji from "react-emoji-render";
 import { FaLinkedinIn, FaGithub, FaShippingFast, FaHandshake } from 'react-icons/fa';
 import { GoCreditCard } from 'react-icons/go';
-import { customersTestimonial } from './Testimonials';
-import { subtitle, about, service1, service2, service3 } from './Texts';
+import { subtitle, about, service1, service2, service3, testimonials, footerAbout } from './Texts';
 import useStyles from './useStyles';
 // import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 import './styles.sass';
@@ -115,21 +114,23 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 <Typography className={classes.sectionTitle} variant="h3" align="center">Customers testimonial</Typography>
                 <Carousel indicators={false} timeout={700} animation="slide">
                 {
-                    customersTestimonial.map((customer, i) => <TestimonialItem key={i} customer={customer} />)
+                   testimonials.map((customer, i) => <TestimonialItem key={i} customer={customer} />)
                 }
                 </Carousel>
             </div>
             <footer>
-                <Typography variant="body1" paragraph gutterBottom className={classes.footerContent}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras libero arcu, blandit eu justo non, ullamcorper suscipit velit. Praesent urna mi, fringilla in varius nec, tempor et lectus. Quisque iaculis faucibus nisl sit amet lobortis. Phasellus sed urna sollicitudin, vulputate lectus tristique, vestibulum dui. Donec blandit auctor massa ac feugiat. Etiam sit amet pulvinar lacus. Duis vel venenatis ex, et vulputate orci. Duis a ultrices lectus. Donec non ornare lacus, non pulvinar sapien. Cras finibus cursus turpis, eu faucibus augue auctor sed. Pellentesque vel rhoncus arcu. Duis at purus felis. In lobortis molestie tristique. Ut luctus dignissim mi, et facilisis enim pulvinar id. Aenean sit amet ipsum ut neque faucibus cursus. Nam vitae magna pellentesque, facilisis lectus vitae, luctus erat.
-                </Typography>
+                {footerAbout.split('\n').map((paragraph, index) => (
+                    <Typography key={index} variant="body1" paragraph className={classes.footerContent}>
+                        {paragraph}
+                    </Typography>
+                ))}
                 <Divider className={classes.divider} />
                 <div className="wrapper">
                     <div className="content">
-                        <Typography variant="subtitle1" className={classes.footerContent}>
+                        <Typography variant="subtitle1" className={classes.copyright}>
                             Copyright &copy; {new Date().getFullYear() === 2021 ? 2021 : `2021 - ${new Date().getFullYear()}`} All Rights Reserved
                         </Typography>
-                        <Typography variant="subtitle1" align="center" className={classes.footerContent}>
+                        <Typography variant="subtitle1" align="center" className={classes.copyright}>
                             Coded with <Emoji text=":heart:" /> by Tsahi Barshavsky
                         </Typography>
                     </div>

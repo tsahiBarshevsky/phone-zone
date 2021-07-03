@@ -127,6 +127,16 @@ export default makeStyles((theme) => ({
     {
         color: 'white',
         fontFamily: `'Nunito', sans-serif`,
+        fontSize: 18,
+        '@media (max-width: 500px)':
+        {
+            textAlign: 'center'
+        }
+    },
+    copyright:
+    {
+        color: 'white',
+        fontFamily: `'Nunito', sans-serif`,
         marginBottom: -8,
         '@media (max-width: 500px)':
         {
