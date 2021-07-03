@@ -7,7 +7,7 @@ import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { customersTestimonial } from './Testimonials';
 import { subtitle, about } from './Texts';
 import useStyles from './useStyles';
-import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
+// import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
 import './styles.sass';
 
 const Homepage = ({phones, accessories, numberOfOrders}) => 
@@ -38,6 +38,15 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 <Button className="button" component={Link} to='/phones'>Browse phones</Button>
             </div>
             <div className="about-us">
+                <div className="wrapper">
+                    <img className="about-image" src="https://images.unsplash.com/photo-1617701586210-a4f7c114bdc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80" alt="" />
+                    <div className="about-text">
+                        <Typography className={classes.aboutTitle} variant="h3" gutterBottom>About us</Typography>
+                        {about.split('\n').map((paragraph, index) => (
+                            <Typography className={classes.typography} variant="h6" key={index} paragraph>{paragraph}</Typography>
+                        ))}
+                    </div>
+                </div>
                 {/* <Typography className={classes.sectionTitle} variant="h3" align="center">About us</Typography>
                 <div className="wrapper">
                     <img src={About} alt="Phone Zone" className="about-image" />
@@ -59,7 +68,7 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                         <img src="https://images.pexels.com/photos/1841841/pexels-photo-1841841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="fafa" />
                         <div className="category-button">
                             <Typography style={{color: 'white'}}>Accessories</Typography>
-                            <Button variant="contained" color="primary">See all</Button>
+                            <Button variant="contained" color="primary" component={Link} to='/accessories'>See all</Button>
                         </div>
                     </div>
                 </div>

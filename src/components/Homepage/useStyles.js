@@ -29,8 +29,9 @@ export default makeStyles((theme) => ({
     sectionTitle:
     {
         color: '#0f172a',
-        fontFamily: `'Nunito', sans-serif`,
-        marginBottom: 20
+        fontFamily: `'Permanent Marker', sans-serif`,
+        marginBottom: 20,
+        letterSpacing: 1.5
     },
     opinion: 
     { 
@@ -82,11 +83,16 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: { width: '70%' },
         [theme.breakpoints.down('sm')]: { width: '100%' }
     },
+    aboutTitle:
+    {
+        fontFamily: `'Permanent Marker', sans-serif`
+    },
     statisticsTitle:
     {
         color: 'white',
-        fontFamily: `'Nunito', sans-serif`,
-        marginBottom: 20
+        fontFamily: `'Permanent Marker', sans-serif`,
+        marginBottom: 20,
+        letterSpacing: 1.5
     },
     statisticNumber:
     {

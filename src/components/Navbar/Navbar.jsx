@@ -47,7 +47,7 @@ const Navbar = ({cart, updateCartQuantity, removeFromCart}) =>
                     {!matches &&
                     <div className={classes.links}>
                         <Link to="/phones" className={classes.link}>Smartphones</Link>
-                        <Link to="/accessories" className={classes.link}>Accessoriess</Link>
+                        <Link to="/accessories" className={classes.link}>Accessories</Link>
                     </div>}
                     <div style={(location.pathname === '/cart' || location.pathname === '/checkout') && !matches ? {display: 'none'} : {}}>
                         {location.pathname !== '/cart' && location.pathname !== '/checkout' && (
