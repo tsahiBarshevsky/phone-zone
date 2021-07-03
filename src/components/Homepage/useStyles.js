@@ -153,5 +153,26 @@ export default makeStyles((theme) => ({
         textAlign: 'center',
         lineHeight: 1.3,
         width: '70%'
+    },
+    categoryText:
+    {
+        color: 'white',
+        fontFamily: `'Nunito', sans-serif`,
+        fontWeight: 600,
+        letterSpacing: 1.5,
+        textShadow: '2px 2px 2px black'
+    },
+    categoryButton:
+    {
+        color: 'white',
+        backgroundColor: '#0c6961',
+        textTransform: 'capitalize',
+        borderRadius: 25,
+        fontSize: 17,
+        width: 100,
+        height: 40,
+        letterSpacing: 1,
+        transition: 'background-color 0.3s ease-in-out',
+        '&:hover': { backgroundColor: '#0c6961CC' }
     }
 }));

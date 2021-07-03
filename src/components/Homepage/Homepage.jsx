@@ -52,15 +52,15 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                     <div className="category-box">
                         <img src="https://images.pexels.com/photos/3973973/pexels-photo-3973973.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="fafa" />
                         <div className="category-button">
-                            <Typography style={{color: 'white'}}>Smartphones</Typography>
-                            <Button variant="contained" color="primary">See all</Button>
+                            <Typography className={classes.categoryText} gutterBottom>Smartphones</Typography>
+                            <Button component={Link} to='/phones' className={classes.categoryButton} variant="contained">See all</Button>
                         </div>
                     </div>
                     <div className="category-box">
                         <img src="https://images.pexels.com/photos/1841841/pexels-photo-1841841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="fafa" />
                         <div className="category-button">
-                            <Typography style={{color: 'white'}}>Accessories</Typography>
-                            <Button variant="contained" color="primary" component={Link} to='/accessories'>See all</Button>
+                            <Typography className={classes.categoryText} gutterBottom>Accessories</Typography>
+                            <Button component={Link} to='/accessories' className={classes.categoryButton} variant="contained">See all</Button>
                         </div>
                     </div>
                 </div>
