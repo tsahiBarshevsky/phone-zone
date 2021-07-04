@@ -7,7 +7,9 @@ import { FaLinkedinIn, FaGithub, FaShippingFast, FaHandshake } from 'react-icons
 import { GoCreditCard } from 'react-icons/go';
 import { subtitle, about, service1, service2, service3, testimonials, footerAbout } from './Texts';
 import useStyles from './useStyles';
-// import About from '../../assets/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg';
+import About from '../../assets/about.jpg';
+import Phones from '../../assets/phones.jpg';
+import Accessories from '../../assets/accessories2.jpg'
 import './styles.sass';
 
 const Homepage = ({phones, accessories, numberOfOrders}) => 
@@ -39,7 +41,7 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
             </div>
             <div className="about-us">
                 <div className="wrapper">
-                    <img className="about-image" src="https://images.unsplash.com/photo-1617701586210-a4f7c114bdc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80" alt="" />
+                    <img className="about-image" src={About} alt="about" />
                     <div className="about-text">
                         <Typography className={classes.aboutTitle} variant="h3" gutterBottom>About us</Typography>
                         {about.split('\n').map((paragraph, index) => (
@@ -49,14 +51,14 @@ const Homepage = ({phones, accessories, numberOfOrders}) =>
                 </div>
                 <div className="categories">
                     <div className="category-box">
-                        <img src="https://images.pexels.com/photos/3973973/pexels-photo-3973973.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="fafa" />
+                        <img src={Phones} alt="Phones" />
                         <div className="category-button">
                             <Typography className={classes.categoryText} gutterBottom>Smartphones</Typography>
                             <Button component={Link} to='/phones' className={classes.categoryButton} variant="contained">See all</Button>
                         </div>
                     </div>
                     <div className="category-box">
-                        <img src="https://images.pexels.com/photos/1841841/pexels-photo-1841841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="fafa" />
+                        <img src={Accessories} alt="Accessories" />
                         <div className="category-button">
                             <Typography className={classes.categoryText} gutterBottom>Accessories</Typography>
                             <Button component={Link} to='/accessories' className={classes.categoryButton} variant="contained">See all</Button>
