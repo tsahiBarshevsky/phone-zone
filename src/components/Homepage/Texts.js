@@ -3,7 +3,7 @@ export const about = 'Phone Zone is a modern online store specialize in smartpho
 export const service1 = 'We offer two shipping options: Free shipping inside Israel and $10 shipping to Europe.';
 export const service2 = 'As an online store, we honor every credit card and use Stripe service to insure a secure payment.';
 export const service3 = "We're committing to provide a full warranty on our products and allows to return a product up to two weeks if it doesn't open.";
-export const footerAbout = 'Phone Zone is a modern and fully responsive online e-commerce store, inspired by some real online stores and allows you to "order" smartphones and mobile accessories. As a Frontend Developer, it was important to me to focus on creating an easy and intuitive user interface with a clean and modern design.\nThe app built using React, Sass, Material-UI, Stripe and Commerce.js, a service that allows managing the backend of an online store like that: Store the products and their information, set shipping areas and prices and managing orders.';
+export const footerAbout = 'Phone Zone is a modern and fully responsive online e-commerce store, inspired by some real online stores and allows you to "order" smartphones and mobile accessories. As a Frontend Developer, it was important to me to focus on creating an easy and intuitive user interface with a clean and modern design.\nThe app built using React, Sass, Material-UI, Stripe and Commerce.js, a service that allows managing the backend of an online store like that: Store the products and their information, determine shipping areas and prices and managing orders.';
 
 export const testimonials = [
     {
