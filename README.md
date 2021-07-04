@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# _Phone Zone - Online Smartphones Store_
+It's no secret that during the COVID-19 pandemic the shopping world changed, and most of the regular stores moved online.
+Due to this change, I've decided to build an online smartphones store and this is the result:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![N|Solid](https://lh3.googleusercontent.com/6ZuibTOPwgkdLDumVTtmwtFe7IDc7gguPaDKXY8_G-pm0l9cEpiZ_gs0bcg14J5GkWPI3xF9TCzUH0lByarIOtFVdK9z_wWmeMsekpSlnmHLvj8GlXTPCfKlMP-hT4xlbpAkEomEzQ=w2400)](https://phone-zone1.netlify.app)
 
-## Available Scripts
+Phone Zone is a modern and fully responsive online e-commerce store, inspired by some real online stores and allows you to "order" smartphones and mobile accessories. As a Frontend Developer, it was important to me to focus on creating an easy and intuitive user interface with a clean and modern design. For the avoidance of doubt, this is just a personal project and I don't sell anything.
 
-In the project directory, you can run:
+In the Frontend, I've been using React with Material-UI framework and SASS. In the Backend, I've been using Stripe for the payment system and Commerce.JS, a service that allows managing the Backend part of stores like that: Store the products and their information, determine shipping countries and subdivisions prices and managing orders in an easy way.
 
-### `npm start`
+If you want to test it, please use this dummy credit card number: 4242 4242 4242 4242 04/24 242 42424
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Project stack:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Frontend: React, SASS, Material UI.
+- Backend: Stripe, Commerce.js.
